@@ -68,7 +68,7 @@ const Basem: FC = () => {
           display: "flex",
           flexDirection: "row",
           alignItems: "stretch",
-          gap: "0",
+          gap: "0rem",
           flex: "1 1 auto",
           position: "relative",
           zIndex: 1
@@ -155,143 +155,206 @@ const Basem: FC = () => {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            padding: "3rem",
+            padding: "0",
             position: "relative",
             minHeight: "100vh"
           }}
         >
-          {/* Text Box Container */}
+          {/* Slider Container - Easy to move with top/left/right/bottom */}
           <div
             style={{
-              backgroundColor: "transparent",
-              border: "1px solid #1ECAD3",
-              borderRadius: "1rem",
-              padding: "3rem 2.5rem",
+              position: "relative",
               width: "100%",
-              maxWidth: "600px",
-              position: "relative"
+              maxWidth: "90em",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: "1.5rem",
+              transform: "translateX(-10em) translateY(5em)",  // Move right 30px, up 20px
             }}
           >
-            {/* Title */}
-            <h2
+            {/* Text Box Container - Fixed size */}
+            <div
               style={{
-                fontSize: "clamp(28px, 4vw, 42px)",
-                fontWeight: 700,
-                color: "#1ECAD3",
-                marginBottom: "1.5rem",
-                lineHeight: 1.3,
-                minHeight: "3em"
+                backgroundColor: "transparent",
+                border: "3px solid #ffffff",
+                borderRadius: "1.5rem",
+                padding: "3rem 2.5rem 5.5rem 2.5rem",
+                width: "100%",
+                minHeight: "400px",
+                display: "flex",
+                flexDirection: "column",
+                position: "relative"
               }}
             >
-              {slides[currentSlide].title}
-            </h2>
+              {/* Title */}
+              <h2
+                style={{
+                  fontSize: "clamp(32px, 4vw, 48px)",
+                  fontWeight: 700,
+                  color: "#84DADE",
+                  marginBottom: "1.25rem",
+                  lineHeight: 1.2
+                }}
+              >
+                {slides[currentSlide].title}
+              </h2>
 
-            {/* Description */}
-            <p
-              style={{
-                fontSize: "clamp(16px, 2vw, 20px)",
-                fontWeight: 400,
-                color: "#FFFFFF",
-                lineHeight: 1.6,
-                marginBottom: "2.5rem",
-                minHeight: "4.5em"
-              }}
-            >
-              {slides[currentSlide].description}
-            </p>
+              {/* Description */}
+              <p
+                style={{
+                  fontSize: "clamp(15px, 1.9vw, 19px)",
+                  fontWeight: 400,
+                  color: "#FFFFFF",
+                  lineHeight: 1.7,
+                  flex: "1 1 auto"
+                }}
+              >
+                {slides[currentSlide].description}
+              </p>
 
-            {/* Navigation Arrows */}
+              {/* Arrows - Inside box at bottom corners */}
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: "1.75rem",
+                  left: "2.5rem",
+                  right: "2.5rem",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between"
+                }}
+              >
+                {/* Left Arrow */}
+                {currentSlide > 0 ? (
+                  <div
+                    style={{
+                      width: "4.5rem",
+                      height: "4.5rem",
+                      borderRadius: "50%",
+                      background: "linear-gradient(135deg, #84DADE 0%, #002B49 100%)",
+                      padding: "0.3rem",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center"
+                    }}
+                  >
+                    <button
+                      onClick={handlePrev}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        borderRadius: "50%",
+                        border: "none",
+                        backgroundColor: "#FFFFFF",
+                        color: "#002B49",
+                        cursor: "pointer",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        fontSize: "2.75rem",
+                        fontWeight: 400,
+                        lineHeight: 0,
+                        padding: 0,
+                        margin: 0,
+                        boxShadow: "0 0 0 2px rgba(0, 43, 73, 0.3), 0 2px 8px rgba(0, 0, 0, 0.15)",
+                        position: "relative",
+                        transition: "all 0.3s ease"
+                      }}
+                    >
+                      <span style={{ 
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, calc(-50% - 2px))",
+                        lineHeight: 1,
+                        margin: 0,
+                        padding: 0,
+                        display: "block"
+                      }}>
+                        ←
+                      </span>
+                    </button>
+                  </div>
+                ) : (
+                  <div style={{ width: "4.5rem" }} />
+                )}
+
+                {/* Right Arrow */}
+                <div
+                  style={{
+                    width: "4.5rem",
+                    height: "4.5rem",
+                    borderRadius: "50%",
+                    background: "linear-gradient(135deg, #84DADE 0%, #002B49 100%)",
+                    padding: "0.3rem",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center"
+                  }}
+                >
+                  <button
+                    onClick={handleNext}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      borderRadius: "50%",
+                      border: "none",
+                      backgroundColor: "#FFFFFF",
+                      color: "#002B49",
+                      cursor: "pointer",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: "2.75rem",
+                      fontWeight: 400,
+                      lineHeight: 0,
+                      padding: 0,
+                      margin: 0,
+                      boxShadow: "0 0 0 2px rgba(0, 43, 73, 0.3), 0 2px 8px rgba(0, 0, 0, 0.15)",
+                      position: "relative",
+                      transition: "all 0.3s ease"
+                    }}
+                  >
+                    <span style={{ 
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      transform: "translate(-50%, calc(-50% - 2px))",
+                      lineHeight: 1,
+                      margin: 0,
+                      padding: 0,
+                      display: "block"
+                    }}>
+                      →
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Progress Indicator - Outside below the box */}
             <div
               style={{
                 display: "flex",
+                gap: "0.5rem",
                 alignItems: "center",
-                justifyContent: "space-between",
-                marginBottom: "1.5rem"
+                justifyContent: "flex-start",
+                width: "100%"
               }}
             >
-              {/* Left Arrow - Only show if not on first slide */}
-              {currentSlide > 0 && (
-                <button
-                  onClick={handlePrev}
+              {slides.map((_, index) => (
+                <div
+                  key={index}
                   style={{
-                    width: "3.5rem",
-                    height: "3.5rem",
-                    borderRadius: "50%",
-                    border: "2px solid #1ECAD3",
-                    backgroundColor: "#002B49",
-                    color: "#1ECAD3",
-                    cursor: "pointer",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "1.5rem",
+                    width: index === currentSlide ? "8rem" : "5rem",
+                    height: "0.25rem",
+                    backgroundColor: index === currentSlide ? "#FF4438" : "#1ECAD3",
+                    borderRadius: "0.125rem",
                     transition: "all 0.3s ease"
                   }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = "#1ECAD3";
-                    e.currentTarget.style.color = "#002B49";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = "#002B49";
-                    e.currentTarget.style.color = "#1ECAD3";
-                  }}
-                >
-                  ←
-                </button>
-              )}
-
-              {/* Progress Indicator */}
-              <div
-                style={{
-                  display: "flex",
-                  gap: "0.75rem",
-                  alignItems: "center",
-                  flex: currentSlide === 0 ? "1 1 auto" : "0 0 auto",
-                  justifyContent: currentSlide === 0 ? "flex-end" : "center"
-                }}
-              >
-                {slides.map((_, index) => (
-                  <div
-                    key={index}
-                    style={{
-                      width: index === currentSlide ? "2rem" : "1.5rem",
-                      height: "0.25rem",
-                      backgroundColor: index === currentSlide ? "#FF4438" : "#1ECAD3",
-                      borderRadius: "0.125rem",
-                      transition: "all 0.3s ease"
-                    }}
-                  />
-                ))}
-              </div>
-
-              {/* Right Arrow */}
-              <button
-                onClick={handleNext}
-                style={{
-                  width: "3.5rem",
-                  height: "3.5rem",
-                  borderRadius: "50%",
-                  border: "2px solid #1ECAD3",
-                  backgroundColor: "#002B49",
-                  color: "#1ECAD3",
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: "1.5rem",
-                  transition: "all 0.3s ease"
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = "#1ECAD3";
-                  e.currentTarget.style.color = "#002B49";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = "#002B49";
-                  e.currentTarget.style.color = "#1ECAD3";
-                }}
-              >
-                →
-              </button>
+                />
+              ))}
             </div>
           </div>
         </div>
