@@ -6,6 +6,10 @@ const Basem: FC = () => {
 
   const slides = [
     {
+      title: "Let Basem handle it",
+      description: "Your Ai property assistant on Whatsapp. Available 24/7."
+    },
+    {
       title: "Rent tracking",
       description: "Basem keeps rent records up to date, shows payment status, and helps you stay on top of rent without manual follow-ups."
     },
@@ -190,7 +194,7 @@ const Basem: FC = () => {
               {/* Title */}
               <h2
                 style={{
-                  fontSize: "clamp(32px, 4vw, 48px)",
+                  fontSize: "clamp(36px, 4vw, 52px)",
                   fontWeight: 700,
                   color: "#84DADE",
                   marginBottom: "1.25rem",
@@ -203,7 +207,7 @@ const Basem: FC = () => {
               {/* Description */}
               <p
                 style={{
-                  fontSize: "clamp(15px, 1.9vw, 19px)",
+                  fontSize: "clamp(18px, 1.9vw, 26px)",
                   fontWeight: 400,
                   color: "#FFFFFF",
                   lineHeight: 1.7,

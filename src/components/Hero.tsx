@@ -1,6 +1,45 @@
 import type { FC } from "react";
+import { useEffect } from "react";
 
 const Hero: FC = () => {
+  useEffect(() => {
+    // Add class to body when Hero is mounted
+    document.body.classList.add('hero-section-active');
+    
+    // Remove class when Hero is unmounted
+    return () => {
+      document.body.classList.remove('hero-section-active');
+    };
+  }, []);
+
+  useEffect(() => {
+    // Hide WhatsApp button when Hero section is in viewport
+    const handleScroll = () => {
+      const heroSection = document.getElementById('home');
+      const whatsappButton = document.querySelector('.floating-whatsapp-btn') as HTMLElement;
+      
+      if (heroSection && whatsappButton) {
+        const rect = heroSection.getBoundingClientRect();
+        const isHeroVisible = rect.top < window.innerHeight && rect.bottom > 0;
+        
+        if (isHeroVisible) {
+          whatsappButton.style.display = 'none';
+        } else {
+          whatsappButton.style.display = 'flex';
+        }
+      }
+    };
+
+    // Check on mount and scroll
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
+  }, []);
   return (
     <section 
       id="home" 
@@ -102,7 +141,8 @@ const Hero: FC = () => {
               left: "-18.5em",
               bottom: "0",
               maxHeight: "59.375em",
-              zIndex: 2
+              zIndex: 2,
+              pointerEvents: "none"
             }}
           />
 
@@ -116,7 +156,10 @@ const Hero: FC = () => {
               left: "7.2em",
               maxWidth: "6.875em",
               zIndex: 1,
-              pointerEvents: "none"
+              transition: "transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
+              cursor: "pointer",
+              willChange: "transform",
+              pointerEvents: "auto"
             }}
           />
 
@@ -130,7 +173,10 @@ const Hero: FC = () => {
               left: "0",
               maxWidth: "6.875em",
               zIndex: 1,
-              pointerEvents: "none"
+              transition: "transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
+              cursor: "pointer",
+              willChange: "transform",
+              pointerEvents: "auto"
             }}
           />
 
@@ -158,7 +204,9 @@ const Hero: FC = () => {
               right: "5.1%",
               maxWidth: "6.25em",
               zIndex: 1,
-              pointerEvents: "none"
+              transition: "transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
+              cursor: "pointer",
+              willChange: "transform"
             }}
           />
 
@@ -172,7 +220,9 @@ const Hero: FC = () => {
               right: "0%",
               maxWidth: "6.25em",
               zIndex: 1,
-              pointerEvents: "none"
+              transition: "transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
+              cursor: "pointer",
+              willChange: "transform"
             }}
           />
         </div>
@@ -180,6 +230,19 @@ const Hero: FC = () => {
 
       {/* Responsive Styles */}
       <style>{`
+        /* Hover Effects for Bars */
+        /* Left Bars */
+        section#home > div > div:last-of-type img[alt="Red Bar Left"]:hover,
+        section#home > div > div:last-of-type img[alt="Blue Bar Left"]:hover {
+          transform: translateY(-25vh) !important;
+        }
+        
+        /* Right Bars - Increased movement */
+        section#home > div > div:last-of-type img[alt="Red Bar Right"]:hover,
+        section#home > div > div:last-of-type img[alt="Blue Bar Right"]:hover {
+          transform: translateY(-35vh) !important;
+        }
+
         /* Tablet: 768px - 992px - Scaled horizontal layout using em */
         @media (max-width: 992px) and (min-width: 769px) {
           section#home > div > div:first-of-type {
