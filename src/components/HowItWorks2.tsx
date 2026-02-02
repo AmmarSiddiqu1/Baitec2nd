@@ -46,7 +46,7 @@ const HowItWorks2: FC = () => {
   const buttonColors = ["#0a8a22", "#84DADE", "#FF4438"]; // Green, Blue, Red
 
   return (
-    <section id="how-it-works2" style={{ background: "#FFFFFF" }}>
+    <section id="how-it-works2" style={{ background: "#FFFFFF", overflowX: "hidden" }}>
       {/* Top Section - Header */}
       <div style={{ 
         background: "#FFFFFF",

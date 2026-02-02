@@ -5,10 +5,7 @@ import Hero from "./components/Hero";
 import Basem from "./components/Basem";
 import NewFeatured from "./components/NewFeatured";
 import HowItWorks2 from "./components/HowItWorks2";
-import Features from "./components/Features";
-import HowItWorks from "./components/HowItWorks";
 import Metrics from "./components/Metrics";
-import AppScreens from "./components/AppScreens";
 import FinalCTA from "./components/FinalCTA";
 import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
@@ -115,11 +112,8 @@ const App: FC = () => {
       <Basem />
       <NewFeatured />
       <HowItWorks2 />
-      <HowItWorks />
-      <Features />
       <Metrics />
       <FinalCTA />
-      <AppScreens />
       <FAQ />
       <Footer />
     </div>

@@ -41,7 +41,7 @@ const NewFeatured: FC = () => {
   ];
 
   return (
-    <section className="about-features py-120" style={{ background: "#FFFFFF" }}>
+    <section id="newfeatured" className="about-features py-120" style={{ background: "#FFFFFF" }}>
       <div className="container">
         <div className="text-center mx-auto tw-pb-15 max-w-910-px">
           {/* Badge */}
@@ -88,20 +88,22 @@ const NewFeatured: FC = () => {
         {/* 6 Feature Cards - 2 rows × 3 columns */}
         <div className="row gy-4 g-3">
           {features.map((feature, idx) => (
-            <div key={idx} className="col-xl-4 col-sm-6" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-duration={600 + idx * 200} style={{ maxWidth: "calc(33.333% + 20px)" }}>
+            <div key={idx} className="col-xl-4 col-sm-6" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-duration={600 + idx * 200}>
               <div
-                className="tw-rounded-2xl tw-py-14 tw-px-7 h-100"
+                className="tw-rounded-2xl tw-py-14 tw-px-7 h-100 newfeatured-card"
                 style={{
                   borderRadius: "20px",
                   background: "#002B49",
-                  padding: "56px 32px",
-                  transition: "background 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
+                  padding: "clamp(36px, 4vw, 56px) clamp(28px, 3vw, 44px)",
+                  border: "1px solid transparent",
+                  transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
                   height: "100%",
                   cursor: "pointer",
                 }}
                 onMouseEnter={(e) => {
                   // Change to light gradient background with dynamic direction
                   e.currentTarget.style.background = `linear-gradient(${feature.gradientDirection}, #FFFFFF 0%, #84DADE 100%)`;
+                  e.currentTarget.style.border = "1px solid #002B49";
                   // Change text colors to dark navy
                   const title = e.currentTarget.querySelector('.card-title') as HTMLElement;
                   const desc = e.currentTarget.querySelector('.card-desc') as HTMLElement;
@@ -123,6 +125,7 @@ const NewFeatured: FC = () => {
                 onMouseLeave={(e) => {
                   // Change back to dark navy background
                   e.currentTarget.style.background = "#002B49";
+                  e.currentTarget.style.border = "1px solid transparent";
                   // Change text colors back to white
                   const title = e.currentTarget.querySelector('.card-title') as HTMLElement;
                   const desc = e.currentTarget.querySelector('.card-desc') as HTMLElement;

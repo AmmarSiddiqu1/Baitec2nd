@@ -87,7 +87,7 @@ const Metrics: FC = () => {
   }, [hasAnimated]);
 
   return (
-    <section ref={sectionRef} className="pt-120" style={{ background: "linear-gradient(180deg, rgba(0, 153, 168, 0.05) 0%, rgba(132, 218, 222, 0.08) 100%)" }}>
+    <section id="impact" ref={sectionRef} className="pt-120" style={{ background: "linear-gradient(180deg, rgba(0, 153, 168, 0.05) 0%, rgba(132, 218, 222, 0.08) 100%)" }}>
       <div className="container">
         <div className="text-center mx-auto tw-pb-15 max-w-548-px">
           {/* Badge */}

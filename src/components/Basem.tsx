@@ -56,8 +56,8 @@ const Basem: FC = () => {
       <div
         style={{
           position: "absolute",
-          top: "21rem",
-          left: "20%",
+          top: "clamp(10rem, 25vh, 21rem)",
+          left: "clamp(15%, 20vw, 20%)",
           right: 0,
           bottom: 0,
           backgroundColor: "#002B49",
@@ -366,36 +366,51 @@ const Basem: FC = () => {
 
       {/* Responsive Styles */}
       <style>{`
-        @media (max-width: 992px) {
-          section#basem > div:first-of-type {
-            left: 30% !important;
+          @media (max-width: 992px) {
+            section#basem {
+              min-height: auto !important;
+            }
+            section#basem > div:first-of-type {
+              top: clamp(8rem, 20vh, 15rem) !important;
+              left: clamp(10%, 15vw, 30%) !important;
+            }
+            section#basem > div:last-of-type {
+              flex-direction: column !important;
+              gap: 2rem !important;
+            }
+            section#basem > div:last-of-type > div:first-of-type {
+              flex: 1 1 auto !important;
+              min-height: auto !important;
+              padding-right: 2rem !important;
+              padding-bottom: 2rem !important;
+            }
+            section#basem > div:last-of-type > div:last-of-type {
+              flex: 1 1 auto !important;
+              min-height: auto !important;
+              padding: 2rem !important;
+            }
           }
-          section#basem > div:last-of-type {
-            flex-direction: column !important;
-            gap: 2rem !important;
+          @media (max-width: 768px) {
+            section#basem {
+              min-height: auto !important;
+            }
+            section#basem > div:first-of-type {
+              top: clamp(5rem, 15vh, 10rem) !important;
+              left: 0 !important;
+              right: 0 !important;
+              height: 30vh !important;
+            }
+            section#basem > div:last-of-type > div:first-of-type {
+              padding-right: 1rem !important;
+              padding-bottom: 1rem !important;
+            }
+            section#basem > div:last-of-type > div:last-of-type {
+              padding: 1.5rem !important;
+            }
+            section#basem > div:last-of-type > div:last-of-type > div {
+              padding: 2rem 1.5rem !important;
+            }
           }
-          section#basem > div:last-of-type > div:first-of-type {
-            flex: 1 1 auto !important;
-            min-height: 50vh !important;
-          }
-          section#basem > div:last-of-type > div:last-of-type {
-            flex: 1 1 auto !important;
-            min-height: 50vh !important;
-            padding: 2rem !important;
-          }
-        }
-        @media (max-width: 768px) {
-          section#basem > div:first-of-type {
-            left: 0 !important;
-            top: 50% !important;
-          }
-          section#basem > div:last-of-type > div:last-of-type {
-            padding: 1.5rem !important;
-          }
-          section#basem > div:last-of-type > div:last-of-type > div {
-            padding: 2rem 1.5rem !important;
-          }
-        }
       `}</style>
     </section>
   );
