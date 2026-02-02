@@ -77,48 +77,59 @@ const Hero: FC = () => {
           padding: "clamp(2rem, 4vw, 3rem) clamp(1rem, 3vw, 2rem)"
         }}
       >
-        {/* Text Section - Headline and Subheadline */}
-        <div
-          style={{
-            textAlign: "center",
-            position: "absolute",
-            top: "clamp(3rem, 6vw, 5rem)",
-            left: "50%",
-            transform: "translateX(-50%)",
-            width: "100%",
-            maxWidth: "65em",
-            zIndex: 3
-          }}
-        >
-          {/* Headline */}
-          <h1
-            style={{
-              fontSize: "clamp(32px, 5vw, 66px)",
-              fontWeight: 700,
-              color: "#002B49",
-              marginBottom: "clamp(1rem, 2vw, 1.5rem)",
-              lineHeight: 1.4,
-              letterSpacing: "-0.04em"
-            }}
-          >
-            SMARTER PROPERTY <br /> MANAGEMENT, ALL IN ONE PLACE
-          </h1>
+            {/* Text Section - Headline and Subheadline */}
+            <div
+              data-aos="fade-up"
+              data-aos-duration="800"
+              data-aos-easing="ease-out-cubic"
+              style={{
+                textAlign: "center",
+                position: "absolute",
+                top: "clamp(3rem, 6vw, 5rem)",
+                left: "50%",
+                transform: "translateX(-50%)",
+                width: "100%",
+                maxWidth: "65em",
+                zIndex: 3
+              }}
+            >
+              {/* Headline */}
+              <h1
+                data-aos="fade-up"
+                data-aos-duration="1000"
+                data-aos-delay="100"
+                data-aos-easing="ease-out-cubic"
+                style={{
+                  fontSize: "clamp(32px, 5vw, 66px)",
+                  fontWeight: 700,
+                  color: "#002B49",
+                  marginBottom: "clamp(1rem, 2vw, 1.5rem)",
+                  lineHeight: 1.4,
+                  letterSpacing: "-0.04em"
+                }}
+              >
+                SMARTER PROPERTY <br /> MANAGEMENT, ALL IN ONE PLACE
+              </h1>
 
-          {/* Subheadline */}
-          <p
-            style={{
-              fontSize: "clamp(16px, 2vw, 30px)",
-              fontWeight: 400,
-              color: "#002B49",
-              lineHeight: 1.6,
-              opacity: 0.9,
-              maxWidth: "55em",
-              margin: "0 auto"
-            }}
-          >
-            Manage units, tenants, rent, and maintenance through <br /> one connected, intelligent platform.
-          </p>
-        </div>
+              {/* Subheadline */}
+              <p
+                data-aos="fade-up"
+                data-aos-duration="1000"
+                data-aos-delay="200"
+                data-aos-easing="ease-out-cubic"
+                style={{
+                  fontSize: "clamp(16px, 2vw, 30px)",
+                  fontWeight: 400,
+                  color: "#002B49",
+                  lineHeight: 1.6,
+                  opacity: 0.9,
+                  maxWidth: "55em",
+                  margin: "0 auto"
+                }}
+              >
+                Manage units, tenants, rent, and maintenance through <br /> one connected, intelligent platform.
+              </p>
+            </div>
 
         {/* Images Container - All absolutely positioned */}
         <div

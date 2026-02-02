@@ -108,6 +108,10 @@ const Basem: FC = () => {
             <img 
               src="/assets/images/basem/redbar_left.webp" 
               alt="Red Bar Left" 
+              data-aos="fade-up"
+              data-aos-duration="1000"
+              data-aos-delay="300"
+              data-aos-easing="ease-out-cubic"
               style={{
                 position: "absolute",
                 top: "30em",
@@ -123,6 +127,10 @@ const Basem: FC = () => {
             <img 
               src="/assets/images/basem/bluebar_left.webp" 
               alt="Blue Bar Left" 
+              data-aos="fade-up"
+              data-aos-duration="1000"
+              data-aos-delay="400"
+              data-aos-easing="ease-out-cubic"
               style={{
                 position: "absolute",
                 top: "15em",
@@ -140,6 +148,9 @@ const Basem: FC = () => {
           <img 
             src="/assets/images/basem/Basem.webp" 
             alt="Basem" 
+            data-aos="fade-right"
+            data-aos-duration="1000"
+            data-aos-easing="ease-out-cubic"
             style={{
               position: "relative",
               width: "auto",
@@ -166,6 +177,10 @@ const Basem: FC = () => {
         >
           {/* Slider Container - Easy to move with top/left/right/bottom */}
           <div
+            data-aos="fade-left"
+            data-aos-duration="1000"
+            data-aos-delay="200"
+            data-aos-easing="ease-out-cubic"
             style={{
               position: "relative",
               width: "100%",

@@ -55,7 +55,7 @@ const Header: FC = () => {
       // Don't set active section if we're on privacy-policy or terms-and-conditions pages
       const currentPath = window.location.pathname;
       if (currentPath !== "/privacy-policy" && currentPath !== "/terms-and-conditions") {
-        const sections = ["home", "basem", "newfeatured", "how-it-works2", "impact", "faq", "contact"];
+        const sections = ["home", "newfeatured", "how-it-works2", "faq", "contact"];
         const current = sections.find((section) => {
           const element = document.getElementById(section);
           if (element) {
@@ -237,10 +237,8 @@ const Header: FC = () => {
 
   const navItems = [
     { label: "Home", href: "#home" },
-    { label: "Basem", href: "#basem" },
     { label: "Features", href: "#newfeatured" },
     { label: "How It Works", href: "#how-it-works2" },
-    { label: "Our Impact", href: "#impact" },
     { label: "FAQ", href: "#faq" },
     { label: "Contact", href: "#contact" },
   ];

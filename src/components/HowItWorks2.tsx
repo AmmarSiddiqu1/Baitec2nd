@@ -54,6 +54,9 @@ const HowItWorks2: FC = () => {
         textAlign: "center"
       }}>
         <h2
+          data-aos="fade-up"
+          data-aos-duration="800"
+          data-aos-easing="ease-out-cubic"
           style={{
             fontSize: "clamp(40px, 6vw, 68px)",
             fontWeight: 700,
@@ -79,6 +82,10 @@ const HowItWorks2: FC = () => {
             <div className="col-lg-6" style={{ paddingLeft: "clamp(0, 2vw, 2rem)" }}>
               {/* Content Box */}
               <div
+                data-aos="fade-up"
+                data-aos-duration="1000"
+                data-aos-delay="100"
+                data-aos-easing="ease-out-cubic"
                 style={{
                   background: "transparent",
                   border: "1px solid #FFFFFF",
@@ -121,7 +128,13 @@ const HowItWorks2: FC = () => {
               </div>
 
               {/* Timeline */}
-              <div style={{ position: "relative", paddingTop: "1rem" }}>
+              <div 
+                data-aos="fade-up"
+                data-aos-duration="1000"
+                data-aos-delay="300"
+                data-aos-easing="ease-out-cubic"
+                style={{ position: "relative", paddingTop: "1rem" }}
+              >
                 {/* Timeline Line - ADJUST: top (line 101) to center circles, left/right (lines 102-103) for length */}
                 <div
                   style={{
@@ -233,21 +246,25 @@ const HowItWorks2: FC = () => {
                 }}
               />
 
-              {/* Mobile Phone Container - ADJUST: padding (line 194), transform (line 195) for position */}
-              <div
-                style={{
-                  position: "relative",
-                  zIndex: 1,
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  padding: "2rem 0",
-                  transform: "translateX(22rem)", // ADJUST: Change value to move left/right
-                  width: "auto",
-                  minWidth: "50em", // Changed to em units
-                  animation: "floatMobile 8s ease-in-out infinite"
-                }}
-              >
+                  {/* Mobile Phone Container - ADJUST: padding (line 194), transform (line 195) for position */}
+                  <div
+                    data-aos="fade-left"
+                    data-aos-duration="1200"
+                    data-aos-delay="200"
+                    data-aos-easing="ease-out-cubic"
+                    style={{
+                      position: "relative",
+                      zIndex: 1,
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      padding: "2rem 0",
+                      transform: "translateX(22rem)", // ADJUST: Change value to move left/right
+                      width: "auto",
+                      minWidth: "50em", // Changed to em units
+                      animation: "floatMobile 8s ease-in-out infinite"
+                    }}
+                  >
                 <img
                   src={stepImages[activeStep]}
                   alt={steps[activeStep].title}
