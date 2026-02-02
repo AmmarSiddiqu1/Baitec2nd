@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Basem from "./components/Basem";
+import NewFeatured from "./components/NewFeatured";
 import Features from "./components/Features";
 import HowItWorks from "./components/HowItWorks";
 import Metrics from "./components/Metrics";
@@ -111,6 +112,7 @@ const App: FC = () => {
       <Header />
       <Hero />
       <Basem />
+      <NewFeatured />
       <HowItWorks />
       <Features />
       <Metrics />
