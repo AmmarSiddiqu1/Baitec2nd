@@ -3,6 +3,24 @@ import { useState } from "react";
 
 const HowItWorks2: FC = () => {
   const [activeStep, setActiveStep] = useState<number>(0);
+  const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
+
+  const handleStepChange = (step: number) => {
+    if (step === activeStep || isTransitioning) return;
+    
+    // Prevent rapid clicking
+    setIsTransitioning(true);
+    
+    // Fade out current content
+    setTimeout(() => {
+      // Change content while faded out
+      setActiveStep(step);
+      // Fade in new content
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 50);
+    }, 300);
+  };
 
   const steps = [
     {
@@ -25,17 +43,19 @@ const HowItWorks2: FC = () => {
     "/assets/images/how_it_works2/step3.svg"
   ];
 
+  const buttonColors = ["#0a8a22", "#84DADE", "#FF4438"]; // Green, Blue, Red
+
   return (
     <section id="how-it-works2" style={{ background: "#FFFFFF" }}>
       {/* Top Section - Header */}
       <div style={{ 
         background: "#FFFFFF",
-        padding: "clamp(0.5rem, 1vw, 1rem) clamp(1rem, 3vw, 2rem) clamp(0.5rem, 1vw, 1rem)", // Reduced top and bottom padding significantly
+        padding: "clamp(0.5rem, 1vw, 1rem) clamp(1rem, 3vw, 2rem) clamp(6rem, 8vw, 9rem)", // Increased bottom padding even more for larger gap
         textAlign: "center"
       }}>
         <h2
           style={{
-            fontSize: "clamp(32px, 5vw, 56px)",
+            fontSize: "clamp(40px, 6vw, 68px)",
             fontWeight: 700,
             color: "#002B49",
             lineHeight: 1.2,
@@ -61,37 +81,39 @@ const HowItWorks2: FC = () => {
               <div
                 style={{
                   background: "transparent",
-                  border: "1px solid #1ECAD3",
+                  border: "1px solid #FFFFFF",
                   borderRadius: "20px",
                   padding: "clamp(2rem, 4vw, 3.5rem)",
                   marginBottom: "clamp(2rem, 4vw, 3rem)",
-                  transition: "all 0.5s ease"
+                  transition: "opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+                  opacity: isTransitioning ? 0 : 1
                 }}
-                key={`content-${activeStep}`}
               >
                 <h3
                   style={{
-                    fontSize: "clamp(28px, 4vw, 42px)",
+                    fontSize: "clamp(32px, 5vw, 48px)",
                     fontWeight: 700,
                     color: "#84DADE",
                     marginBottom: "1.5rem",
                     lineHeight: 1.2,
-                    transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
-                    animation: "fadeInUp 0.5s ease"
+                    minHeight: "clamp(60px, 8vw, 90px)",
+                    display: "flex",
+                    alignItems: "center",
+                    transition: "opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)"
                   }}
                 >
                   {steps[activeStep].title}
                 </h3>
                 <p
                   style={{
-                    fontSize: "clamp(16px, 2vw, 20px)",
+                    fontSize: "clamp(18px, 2.5vw, 24px)",
                     fontWeight: 400,
                     color: "#FFFFFF",
                     lineHeight: 1.6,
                     margin: 0,
                     opacity: 0.9,
-                    transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
-                    animation: "fadeInUp 0.6s ease"
+                    minHeight: "clamp(64px, 8vw, 96px)",
+                    transition: "opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.05s"
                   }}
                 >
                   {steps[activeStep].description}
@@ -108,7 +130,7 @@ const HowItWorks2: FC = () => {
                     left: "15%", // ADJUST: Decrease to make line shorter
                     right: "15%", // ADJUST: Decrease to make line shorter
                     height: "2px",
-                    background: "#1ECAD3",
+                    background: "#FFFFFF",
                     zIndex: 0
                   }}
                 />
@@ -131,17 +153,17 @@ const HowItWorks2: FC = () => {
                         flex: 1,
                         transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)"
                       }}
-                      onClick={() => setActiveStep(index)}
+                      onClick={() => handleStepChange(index)}
                     >
-                      {/* Circle Node */}
+                      {/* Basem-style Button Node */}
                       <div
-                        className={index === activeStep ? "timeline-node-active" : ""}
                         style={{
-                          width: "clamp(50px, 6vw, 70px)", // Increased size
-                          height: "clamp(50px, 6vw, 70px)", // Increased size
+                          width: "clamp(4rem, 5vw, 4.5rem)",
+                          height: "clamp(4rem, 5vw, 4.5rem)",
                           borderRadius: "50%",
-                          background: index === activeStep ? "#FF4438" : "#1ECAD3",
-                          border: "3px solid #002B49",
+                          background: "linear-gradient(135deg, #84DADE 0%, #002B49 100%)",
+                          padding: "0.3rem",
+                          border: "1px solid #FFFFFF",
                           display: "flex",
                           alignItems: "center",
                           justifyContent: "center",
@@ -149,16 +171,37 @@ const HowItWorks2: FC = () => {
                           transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
                           position: "relative",
                           zIndex: 2,
-                          transform: index === activeStep ? "scale(1.1)" : "scale(1)"
+                          transform: index === activeStep ? "scale(1.1)" : "scale(1)",
+                          animation: index !== activeStep 
+                            ? (index === 0 
+                                ? "2s ease infinite pulse-green-hw2"
+                                : index === 1
+                                ? "2s ease infinite pulse-blue-hw2"
+                                : "2s ease infinite pulse-red-hw2")
+                            : "none"
                         }}
-                      />
+                      >
+                        <div
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            borderRadius: "50%",
+                            backgroundColor: buttonColors[index],
+                            boxShadow: "0 0 0 2px rgba(0, 43, 73, 0.3), 0 2px 8px rgba(0, 0, 0, 0.15)",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            transition: "all 0.3s ease"
+                          }}
+                        />
+                      </div>
 
                       {/* Label */}
                       <span
                         style={{
-                          fontSize: "clamp(14px, 1.8vw, 18px)",
+                          fontSize: "clamp(16px, 2vw, 20px)",
                           fontWeight: index === activeStep ? 700 : 400,
-                          color: index === activeStep ? "#FF4438" : "#1ECAD3",
+                          color: index === activeStep ? "#84DADE" : "#FFFFFF",
                           textAlign: "center",
                           transition: "all 0.4s ease"
                         }}
@@ -201,7 +244,8 @@ const HowItWorks2: FC = () => {
                   padding: "2rem 0",
                   transform: "translateX(22rem)", // ADJUST: Change value to move left/right
                   width: "auto",
-                  minWidth: "50em" // Changed to em units
+                  minWidth: "50em", // Changed to em units
+                  animation: "floatMobile 8s ease-in-out infinite"
                 }}
               >
                 <img
@@ -212,11 +256,11 @@ const HowItWorks2: FC = () => {
                     minWidth: "75em", // Changed to em units
                     height: "auto",
                     objectFit: "contain",
-                    transition: "opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
-                    transform: "scale(1)",
-                    animation: activeStep !== undefined ? "fadeInSlide 0.6s ease" : "none"
+                    willChange: "transform, opacity",
+                    opacity: isTransitioning ? 0 : 1,
+                    transform: isTransitioning ? "translate3d(0, 12px, 0) scale(0.96)" : "translate3d(0, 0, 0) scale(1)",
+                    transition: "opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)"
                   }}
-                  key={activeStep}
                 />
               </div>
             </div>
@@ -248,17 +292,71 @@ const HowItWorks2: FC = () => {
           }
         }
 
-        @keyframes timelinePulse {
-          0%, 100% {
-            transform: scale(1);
+        @keyframes pulse-green-hw2 {
+          0% {
+            box-shadow: 0 0 0 0 rgba(10, 138, 34, 0.8);
           }
-          50% {
-            transform: scale(1.15);
+          100% {
+            box-shadow: 0 0 0 30px rgba(10, 138, 34, 0);
           }
         }
 
-        #how-it-works2 .timeline-node-active {
-          animation: timelinePulse 0.5s ease;
+        @keyframes pulse-blue-hw2 {
+          0% {
+            box-shadow: 0 0 0 0 rgba(132, 218, 222, 0.8);
+          }
+          100% {
+            box-shadow: 0 0 0 30px rgba(132, 218, 222, 0);
+          }
+        }
+
+        @keyframes pulse-red-hw2 {
+          0% {
+            box-shadow: 0 0 0 0 rgba(255, 68, 56, 0.8);
+          }
+          100% {
+            box-shadow: 0 0 0 30px rgba(255, 68, 56, 0);
+          }
+        }
+
+        @keyframes fadeInUpSmooth {
+          from {
+            opacity: 0;
+            transform: translateY(15px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes fadeInSlideSmooth {
+          from {
+            opacity: 0;
+            transform: translateY(20px) scale(0.96);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+
+        @keyframes floatMobile {
+          0% {
+            transform: translateX(22rem) translate(0, 0);
+          }
+          25% {
+            transform: translateX(22rem) translate(3px, -5px);
+          }
+          50% {
+            transform: translateX(22rem) translate(-2px, 3px);
+          }
+          75% {
+            transform: translateX(22rem) translate(4px, 2px);
+          }
+          100% {
+            transform: translateX(22rem) translate(0, 0);
+          }
         }
 
         @media (max-width: 992px) {
