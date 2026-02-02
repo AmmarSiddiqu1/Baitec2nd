@@ -43,47 +43,24 @@ const NewFeatured: FC = () => {
   return (
     <section id="newfeatured" className="about-features py-120" style={{ background: "#FFFFFF" }}>
       <div className="container">
-        <div className="text-center mx-auto tw-pb-15 max-w-910-px">
-          {/* Badge */}
-          <div
-            className="tw-py-2 tw-px-7 rounded-pill fw-bold text-capitalize tw-leading-none d-inline-flex align-items-center tw-gap-2 tw-mb-405 min-w-max"
-            data-aos="fade-up"
-            data-aos-anchor-placement="top-bottom"
-            data-aos-duration="600"
-            style={{
-              background: "linear-gradient(135deg, #002B49 0%, #0099A8 100%)",
-              color: "#FFFFFF",
-              boxShadow: "0 8px 24px rgba(0, 43, 73, 0.3)",
-            }}
-          >
-            key features
-          </div>
-          {/* Headline */}
-          <h2
-            className="splitTextStyleOne text-heading text-capitalize tw-leading-none"
-            style={{
-              fontSize: "clamp(28px, 4vw, 48px)",
-              fontWeight: 700,
-              color: "#002B49",
-              lineHeight: 1.2,
-              marginTop: "1rem",
-            }}
-          >
-            Why property owners choose BaiTech
-          </h2>
-          {/* Description */}
-          <p
-            className="splitTextStyleOne max-w-602-px mx-auto fw-medium tw-mt-5"
-            style={{
-              fontSize: "18px",
-              color: "#002B49",
-              marginTop: "1rem",
-              opacity: 0.8,
-            }}
-          >
-            A system built for clarity and control.
-          </p>
-        </div>
+            <div className="text-center mx-auto tw-pb-15 max-w-910-px">
+              {/* Headline */}
+              <h2
+                className="splitTextStyleOne text-heading tw-leading-none"
+                data-aos="fade-up"
+                data-aos-duration="800"
+                data-aos-easing="ease-out-cubic"
+                style={{
+                  fontSize: "clamp(28px, 4vw, 42px)",
+                  fontWeight: 700,
+                  color: "#002B49",
+                  lineHeight: 1,
+                  marginTop: "1rem",
+                }}
+              >
+                Why property owners choose BaiTech or A system built for clarity and control.
+              </h2>
+            </div>
 
         {/* 6 Feature Cards - 2 rows × 3 columns */}
         <div className="row gy-4 g-3">

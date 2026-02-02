@@ -3,6 +3,7 @@ import { useState } from "react";
 
 const Basem: FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const slides = [
     {
@@ -32,11 +33,25 @@ const Basem: FC = () => {
   ];
 
   const handlePrev = () => {
-    setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 50);
+    }, 300);
   };
 
   const handleNext = () => {
-    setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 50);
+    }, 300);
   };
 
   return (
@@ -109,9 +124,9 @@ const Basem: FC = () => {
               src="/assets/images/basem/redbar_left.webp" 
               alt="Red Bar Left" 
               data-aos="fade-up"
-              data-aos-duration="1000"
-              data-aos-delay="300"
-              data-aos-easing="ease-out-cubic"
+              data-aos-duration="600"
+              data-aos-delay="150"
+              data-aos-easing="ease-out"
               style={{
                 position: "absolute",
                 top: "30em",
@@ -128,9 +143,9 @@ const Basem: FC = () => {
               src="/assets/images/basem/bluebar_left.webp" 
               alt="Blue Bar Left" 
               data-aos="fade-up"
-              data-aos-duration="1000"
-              data-aos-delay="400"
-              data-aos-easing="ease-out-cubic"
+              data-aos-duration="600"
+              data-aos-delay="200"
+              data-aos-easing="ease-out"
               style={{
                 position: "absolute",
                 top: "15em",
@@ -149,8 +164,9 @@ const Basem: FC = () => {
             src="/assets/images/basem/Basem.webp" 
             alt="Basem" 
             data-aos="fade-right"
-            data-aos-duration="1000"
-            data-aos-easing="ease-out-cubic"
+            data-aos-duration="600"
+            data-aos-delay="0"
+            data-aos-easing="ease-out"
             style={{
               position: "relative",
               width: "auto",
@@ -178,9 +194,9 @@ const Basem: FC = () => {
           {/* Slider Container - Easy to move with top/left/right/bottom */}
           <div
             data-aos="fade-left"
-            data-aos-duration="1000"
-            data-aos-delay="200"
-            data-aos-easing="ease-out-cubic"
+            data-aos-duration="600"
+            data-aos-delay="100"
+            data-aos-easing="ease-out"
             style={{
               position: "relative",
               width: "100%",
@@ -213,7 +229,11 @@ const Basem: FC = () => {
                   fontWeight: 700,
                   color: "#84DADE",
                   marginBottom: "1.25rem",
-                  lineHeight: 1.2
+                  lineHeight: 1.2,
+                  minHeight: "clamp(60px, 8vw, 80px)",
+                  transition: "opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+                  opacity: isTransitioning ? 0 : 1,
+                  transform: isTransitioning ? "translateY(10px)" : "translateY(0)"
                 }}
               >
                 {slides[currentSlide].title}
@@ -226,7 +246,10 @@ const Basem: FC = () => {
                   fontWeight: 400,
                   color: "#FFFFFF",
                   lineHeight: 1.7,
-                  flex: "1 1 auto"
+                  flex: "1 1 auto",
+                  transition: "opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.05s, transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.05s",
+                  opacity: isTransitioning ? 0 : 1,
+                  transform: isTransitioning ? "translateY(10px)" : "translateY(0)"
                 }}
               >
                 {slides[currentSlide].description}
@@ -255,7 +278,10 @@ const Basem: FC = () => {
                       padding: "0.3rem",
                       display: "flex",
                       alignItems: "center",
-                      justifyContent: "center"
+                      justifyContent: "center",
+                      transition: "opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+                      opacity: isTransitioning ? 0.5 : 1,
+                      transform: isTransitioning ? "scale(0.95)" : "scale(1)"
                     }}
                   >
                     <button
@@ -278,7 +304,17 @@ const Basem: FC = () => {
                         margin: 0,
                         boxShadow: "0 0 0 2px rgba(0, 43, 73, 0.3), 0 2px 8px rgba(0, 0, 0, 0.15)",
                         position: "relative",
-                        transition: "all 0.3s ease"
+                        transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+                      }}
+                      onMouseEnter={(e) => {
+                        if (!isTransitioning) {
+                          e.currentTarget.style.transform = "scale(1.05)";
+                          e.currentTarget.style.boxShadow = "0 0 0 3px rgba(0, 43, 73, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2)";
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = "scale(1)";
+                        e.currentTarget.style.boxShadow = "0 0 0 2px rgba(0, 43, 73, 0.3), 0 2px 8px rgba(0, 0, 0, 0.15)";
                       }}
                     >
                       <span style={{ 
@@ -296,7 +332,7 @@ const Basem: FC = () => {
                     </button>
                   </div>
                 ) : (
-                  <div style={{ width: "4.5rem" }} />
+                  <div style={{ width: "4.5rem", transition: "opacity 0.3s ease", opacity: isTransitioning ? 0 : 1 }} />
                 )}
 
                 {/* Right Arrow */}
@@ -309,7 +345,10 @@ const Basem: FC = () => {
                     padding: "0.3rem",
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "center"
+                    justifyContent: "center",
+                    transition: "opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+                    opacity: isTransitioning ? 0.5 : 1,
+                    transform: isTransitioning ? "scale(0.95)" : "scale(1)"
                   }}
                 >
                   <button
@@ -332,7 +371,17 @@ const Basem: FC = () => {
                       margin: 0,
                       boxShadow: "0 0 0 2px rgba(0, 43, 73, 0.3), 0 2px 8px rgba(0, 0, 0, 0.15)",
                       position: "relative",
-                      transition: "all 0.3s ease"
+                      transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!isTransitioning) {
+                        e.currentTarget.style.transform = "scale(1.05)";
+                        e.currentTarget.style.boxShadow = "0 0 0 3px rgba(0, 43, 73, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2)";
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = "scale(1)";
+                      e.currentTarget.style.boxShadow = "0 0 0 2px rgba(0, 43, 73, 0.3), 0 2px 8px rgba(0, 0, 0, 0.15)";
                     }}
                   >
                     <span style={{ 
