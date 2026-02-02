@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Basem from "./components/Basem";
 import NewFeatured from "./components/NewFeatured";
+import HowItWorks2 from "./components/HowItWorks2";
 import Features from "./components/Features";
 import HowItWorks from "./components/HowItWorks";
 import Metrics from "./components/Metrics";
@@ -113,6 +114,7 @@ const App: FC = () => {
       <Hero />
       <Basem />
       <NewFeatured />
+      <HowItWorks2 />
       <HowItWorks />
       <Features />
       <Metrics />
