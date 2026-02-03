@@ -47,13 +47,6 @@ const ContactUs: FC = () => {
     boxShadow: "0 4px 20px rgba(0, 0, 0, 0.08)",
   };
 
-  const h2Style = {
-    ...headingStyles.h3,
-    fontSize: "clamp(20px, 3vw, 24px)",
-    marginTop: "2rem",
-    marginBottom: "1rem",
-  };
-
   const pStyle = {
     ...bodyStyles.medium,
     color: COLORS.neutral500,
