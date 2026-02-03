@@ -72,51 +72,60 @@ const NewFeatured: FC = () => {
                   borderRadius: "20px",
                   background: "#002B49",
                   padding: "clamp(36px, 4vw, 56px) clamp(28px, 3vw, 44px)",
-                  border: "1px solid transparent",
-                  transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
+                  border: "none",
+                  outline: "none",
+                  transition: "background 1s ease",
                   height: "100%",
                   cursor: "pointer",
                 }}
                 onMouseEnter={(e) => {
+                  // Ensure transition is set before changing background
+                  e.currentTarget.style.transition = "background 1s ease";
                   // Change to light gradient background with dynamic direction
                   e.currentTarget.style.background = `linear-gradient(${feature.gradientDirection}, #FFFFFF 0%, #84DADE 100%)`;
-                  e.currentTarget.style.border = "1px solid #002B49";
                   // Change text colors to dark navy
                   const title = e.currentTarget.querySelector('.card-title') as HTMLElement;
                   const desc = e.currentTarget.querySelector('.card-desc') as HTMLElement;
                   if (title) {
+                    title.style.transition = "color 1s ease, transform 1s ease";
                     title.style.color = "#002B49";
                     title.style.transform = "translateY(-2px)";
                   }
                   if (desc) {
+                    desc.style.transition = "color 1s ease, transform 1s ease";
                     desc.style.color = "#002B49";
                     desc.style.transform = "translateY(-2px)";
                   }
                   // Enhanced glow and scale for icon
                   const iconImg = e.currentTarget.querySelector('.icon-img') as HTMLElement;
                   if (iconImg) {
+                    iconImg.style.transition = "filter 1s ease, transform 1s ease";
                     iconImg.style.filter = "drop-shadow(0 0 20px rgba(255, 68, 56, 1.2))";
                     iconImg.style.transform = "scale(1.1)";
                   }
                 }}
                 onMouseLeave={(e) => {
+                  // Ensure transition is set before changing background
+                  e.currentTarget.style.transition = "background 1s ease";
                   // Change back to dark navy background
                   e.currentTarget.style.background = "#002B49";
-                  e.currentTarget.style.border = "1px solid transparent";
                   // Change text colors back to white
                   const title = e.currentTarget.querySelector('.card-title') as HTMLElement;
                   const desc = e.currentTarget.querySelector('.card-desc') as HTMLElement;
                   if (title) {
+                    title.style.transition = "color 1s ease, transform 1s ease";
                     title.style.color = "#FFFFFF";
                     title.style.transform = "translateY(0)";
                   }
                   if (desc) {
+                    desc.style.transition = "color 1s ease, transform 1s ease";
                     desc.style.color = "#FFFFFF";
                     desc.style.transform = "translateY(0)";
                   }
                   // Remove glow and reset scale from icon
                   const iconImg = e.currentTarget.querySelector('.icon-img') as HTMLElement;
                   if (iconImg) {
+                    iconImg.style.transition = "filter 1s ease, transform 1s ease";
                     iconImg.style.filter = "none";
                     iconImg.style.transform = "scale(1)";
                   }
@@ -145,7 +154,7 @@ const NewFeatured: FC = () => {
                       width: "60px",
                       height: "60px",
                       objectFit: "contain",
-                      transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
+                      transition: "filter 0.3s ease, transform 0.3s ease",
                     }}
                   />
                 </div>
@@ -156,8 +165,7 @@ const NewFeatured: FC = () => {
                     fontWeight: 700,
                     color: "#FFFFFF",
                     marginBottom: "1rem",
-                    transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
-                    willChange: "transform, color",
+                    transition: "color 0.3s ease, transform 0.3s ease",
                   }}
                 >
                   {feature.title}
@@ -169,8 +177,7 @@ const NewFeatured: FC = () => {
                     color: "#FFFFFF",
                     lineHeight: 1.5,
                     opacity: 0.9,
-                    transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
-                    willChange: "transform, color",
+                    transition: "color 0.3s ease, transform 0.3s ease",
                   }}
                 >
                   {feature.desc}

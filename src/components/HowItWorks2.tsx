@@ -1,9 +1,30 @@
 import type { FC } from "react";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import AOS from "aos";
 
 const HowItWorks2: FC = () => {
   const [activeStep, setActiveStep] = useState<number>(0);
   const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
+  const contentBoxRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Refresh AOS after component mounts to ensure animations work
+    AOS.refresh();
+  }, []);
+
+  useEffect(() => {
+    // Only apply transition opacity when transitioning between steps
+    if (contentBoxRef.current) {
+      if (isTransitioning) {
+        contentBoxRef.current.style.transition = "opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+        contentBoxRef.current.style.opacity = "0";
+      } else {
+        // Let AOS handle the opacity, only override during transitions
+        contentBoxRef.current.style.transition = "none";
+        contentBoxRef.current.style.opacity = "";
+      }
+    }
+  }, [isTransitioning]);
 
   const handleStepChange = (step: number) => {
     if (step === activeStep || isTransitioning) return;
@@ -82,18 +103,17 @@ const HowItWorks2: FC = () => {
             <div className="col-lg-6" style={{ paddingLeft: "clamp(0, 2vw, 2rem)" }}>
               {/* Content Box */}
               <div
+                ref={contentBoxRef}
                 data-aos="fade-up"
-                data-aos-duration="1000"
+                data-aos-duration="600"
                 data-aos-delay="100"
-                data-aos-easing="ease-out-cubic"
+                data-aos-easing="ease-out"
                 style={{
                   background: "transparent",
                   border: "1px solid #FFFFFF",
                   borderRadius: "20px",
                   padding: "clamp(2rem, 4vw, 3.5rem)",
-                  marginBottom: "clamp(2rem, 4vw, 3rem)",
-                  transition: "opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-                  opacity: isTransitioning ? 0 : 1
+                  marginBottom: "clamp(2rem, 4vw, 3rem)"
                 }}
               >
                 <h3

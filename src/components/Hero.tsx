@@ -146,6 +146,10 @@ const Hero: FC = () => {
           <img 
             src="/assets/images/hero/Hero_house.webp" 
             alt="Hero House" 
+            data-aos="fade-right"
+            data-aos-duration="600"
+            data-aos-delay="200"
+            data-aos-easing="ease-out"
             style={{
               position: "absolute",
               top: "15.625em",
@@ -161,6 +165,10 @@ const Hero: FC = () => {
           <img 
             src="/assets/images/hero/redbar_left.webp" 
             alt="Red Bar Left" 
+            data-aos="fade-down"
+            data-aos-duration="600"
+            data-aos-delay="600"
+            data-aos-easing="ease-out"
             style={{
               position: "absolute",
               top: "20.3125em",
@@ -178,6 +186,10 @@ const Hero: FC = () => {
           <img 
             src="/assets/images/hero/bluebar_left.webp" 
             alt="Blue Bar Left" 
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="600"
+            data-aos-easing="ease-out"
             style={{
               position: "absolute",
               top: "14.375em",
@@ -195,6 +207,10 @@ const Hero: FC = () => {
           <img 
             src="/assets/images/hero/hero_mobile_screen.webp" 
             alt="Hero Mobile Screen" 
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="300"
+            data-aos-easing="ease-out"
             style={{
               position: "absolute",
               top: "25em",
