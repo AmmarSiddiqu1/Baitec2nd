@@ -67,7 +67,7 @@ const Basem: FC = () => {
         overflow: "hidden"
       }}
     >
-      {/* Color Box Background Layer - At section level for full height */}
+      {/* Color Box Background Layer - At sectionn level for full height */}
       <div
         style={{
           position: "absolute",
