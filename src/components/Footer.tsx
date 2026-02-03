@@ -6,7 +6,6 @@ const Footer: FC = () => {
   const signupButtonRef = useRef<HTMLAnchorElement>(null);
   const signupFlairRef = useRef<HTMLSpanElement>(null);
   const ctaSectionRef = useRef<HTMLDivElement>(null);
-  const badgeRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const buttonContainerRef = useRef<HTMLDivElement>(null);
 
@@ -55,27 +54,15 @@ const Footer: FC = () => {
 
   useEffect(() => {
     const ctaSection = ctaSectionRef.current;
-    const badge = badgeRef.current;
     const headline = headlineRef.current;
     const buttonContainer = buttonContainerRef.current;
 
-    if (!ctaSection || !badge || !headline || !buttonContainer) return;
+    if (!ctaSection || !headline || !buttonContainer) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // Animate badge
-            if (badge) {
-              badge.style.opacity = '0';
-              badge.style.transform = 'translateY(30px) scale(0.95)';
-              badge.style.transition = 'opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-              setTimeout(() => {
-                badge.style.opacity = '1';
-                badge.style.transform = 'translateY(0) scale(1)';
-              }, 100);
-            }
-
             // Animate headline
             if (headline) {
               headline.style.opacity = '0';
@@ -84,7 +71,7 @@ const Footer: FC = () => {
               setTimeout(() => {
                 headline.style.opacity = '1';
                 headline.style.transform = 'translateY(0) scale(1)';
-              }, 300);
+              }, 100);
             }
 
             // Animate button container
@@ -95,7 +82,7 @@ const Footer: FC = () => {
               setTimeout(() => {
                 buttonContainer.style.opacity = '1';
                 buttonContainer.style.transform = 'translateY(0) scale(1)';
-              }, 500);
+              }, 300);
             }
           }
         });
@@ -126,13 +113,6 @@ const Footer: FC = () => {
               }}
             >
               <div className="text-center mx-auto max-w-724-px">
-                {/* Badge */}
-                <div
-                  ref={badgeRef}
-                  className="bg-white-13 tw-py-2 tw-px-7 rounded-pill text-white fw-semibold text-capitalize tw-leading-none d-inline-flex align-items-center tw-gap-2 tw-mb-405 min-w-max common-shadow-twentyNine"
-                >
-                  Contact Us Now
-                </div>
                 {/* Headline */}
                 <h2
                   ref={headlineRef}

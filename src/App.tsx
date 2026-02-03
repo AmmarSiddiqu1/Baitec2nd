@@ -11,6 +11,7 @@ import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import TermsAndConditions from "./components/TermsAndConditions";
+import ContactUs from "./components/ContactUs";
 import SmoothScroll from "./helper/SmoothScroll";
 import InitializeAOS from "./helper/InitializeAOS";
 
@@ -22,6 +23,8 @@ const App: FC = () => {
       return "privacy-policy";
     } else if (path === "/terms-and-conditions") {
       return "terms-and-conditions";
+    } else if (path === "/contact-us") {
+      return "contact-us";
     }
     return "home";
   };
@@ -35,6 +38,8 @@ const App: FC = () => {
       setCurrentPage("privacy-policy");
     } else if (path === "/terms-and-conditions") {
       setCurrentPage("terms-and-conditions");
+    } else if (path === "/contact-us") {
+      setCurrentPage("contact-us");
     } else {
       setCurrentPage("home");
     }
@@ -46,6 +51,8 @@ const App: FC = () => {
         setCurrentPage("privacy-policy");
       } else if (path === "/terms-and-conditions") {
         setCurrentPage("terms-and-conditions");
+      } else if (path === "/contact-us") {
+        setCurrentPage("contact-us");
       } else {
         setCurrentPage("home");
         // Handle hash navigation if present
@@ -72,10 +79,10 @@ const App: FC = () => {
       const link = target.closest("a[href^='/']");
       if (link) {
         const href = link.getAttribute("href");
-        if (href === "/privacy-policy" || href === "/terms-and-conditions") {
+        if (href === "/privacy-policy" || href === "/terms-and-conditions" || href === "/contact-us") {
           e.preventDefault();
           e.stopPropagation();
-          const newPage = href === "/privacy-policy" ? "privacy-policy" : "terms-and-conditions";
+          const newPage = href === "/privacy-policy" ? "privacy-policy" : href === "/terms-and-conditions" ? "terms-and-conditions" : "contact-us";
           window.history.pushState({ page: newPage }, "", href);
           setCurrentPage(newPage);
           // Scroll to top
@@ -90,7 +97,7 @@ const App: FC = () => {
 
   // Scroll to top when page changes
   useEffect(() => {
-    if (currentPage === "privacy-policy" || currentPage === "terms-and-conditions") {
+    if (currentPage === "privacy-policy" || currentPage === "terms-and-conditions" || currentPage === "contact-us") {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }, [currentPage]);
@@ -101,6 +108,10 @@ const App: FC = () => {
 
   if (currentPage === "terms-and-conditions") {
     return <TermsAndConditions />;
+  }
+
+  if (currentPage === "contact-us") {
+    return <ContactUs />;
   }
 
   return (

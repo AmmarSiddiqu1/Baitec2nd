@@ -142,7 +142,7 @@ const Header: FC = () => {
     { label: "Features", href: "#newfeatured" },
     { label: "How It Works", href: "#how-it-works2" },
     { label: "FAQ", href: "#faq" },
-    { label: "Contact", href: "#contact" },
+    { label: "Contact", href: "/contact-us" },
   ];
 
   return (
@@ -178,8 +178,8 @@ const Header: FC = () => {
                 style={{ textDecoration: "none", cursor: "pointer", display: "flex", alignItems: "center" }}
                 onClick={(e) => {
                   const currentPath = window.location.pathname;
-                  // If we're on policy pages, navigate to home first
-                  if (currentPath === "/privacy-policy" || currentPath === "/terms-and-conditions") {
+                  // If we're on policy pages or contact-us, navigate to home first
+                  if (currentPath === "/privacy-policy" || currentPath === "/terms-and-conditions" || currentPath === "/contact-us") {
                     e.preventDefault();
                     // Navigate to home page
                     window.history.pushState({}, "", "/");
@@ -241,8 +241,16 @@ const Header: FC = () => {
                         }}
                         onClick={(e) => {
                           const currentPath = window.location.pathname;
-                          // If we're on policy pages, navigate to home first
-                          if (currentPath === "/privacy-policy" || currentPath === "/terms-and-conditions") {
+                          // Handle contact-us page navigation
+                          if (item.href === "/contact-us") {
+                            e.preventDefault();
+                            window.history.pushState({ page: "contact-us" }, "", "/contact-us");
+                            window.dispatchEvent(new PopStateEvent("popstate"));
+                            window.scrollTo({ top: 0, behavior: "smooth" });
+                            return;
+                          }
+                          // If we're on policy pages or contact-us, navigate to home first
+                          if (currentPath === "/privacy-policy" || currentPath === "/terms-and-conditions" || currentPath === "/contact-us") {
                             e.preventDefault();
                             // Navigate to home page
                             window.history.pushState({}, "", "/");
