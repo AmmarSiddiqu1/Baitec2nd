@@ -39,18 +39,12 @@ const throttle = <T extends (...args: any[]) => any>(
 
 const Header: FC = () => {
   const [mobileMenu, setMobileMenu] = useState<boolean>(false);
-  const [scroll, setScroll] = useState<boolean>(false);
   const [activeSection, setActiveSection] = useState<string>("home");
   const whatsappButtonRef = useRef<HTMLAnchorElement>(null);
   const whatsappFlairRef = useRef<HTMLSpanElement>(null);
-  const headerOverlayRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = throttle(() => {
-      const y = window.scrollY;
-      const shouldBeFixed = y >= 100;
-      setScroll(shouldBeFixed);
-
       // Update active section based on scroll position
       // Don't set active section if we're on privacy-policy or terms-and-conditions pages
       const currentPath = window.location.pathname;
@@ -69,79 +63,10 @@ const Header: FC = () => {
         // Clear active section on policy pages
         setActiveSection("");
       }
-
-      // Header styling on scroll with smooth z-index transitions
-      const isMobile = window.innerWidth < 992;
-      const header = document.querySelector('header') as HTMLElement;
-      if (header) {
-        // Update header padding based on scroll state
-        if (shouldBeFixed) {
-          header.style.paddingTop = 'clamp(0.05rem, 0.4vw, 0.15rem)';
-          header.style.paddingBottom = 'clamp(0.05rem, 0.4vw, 0.15rem)';
-        } else {
-          header.style.paddingTop = 'clamp(0.15rem, 0.8vw, 0.35rem)';
-          header.style.paddingBottom = 'clamp(0.15rem, 0.8vw, 0.35rem)';
-        }
-        
-        // Update logo size based on scroll state
-        const logoImg = header.querySelector('.header-logo') as HTMLElement;
-        if (logoImg) {
-          if (shouldBeFixed) {
-            logoImg.style.height = 'clamp(28px, 5vw, 50px)';
-            logoImg.style.width = 'clamp(140px, 18vw, 220px)';
-            logoImg.style.maxHeight = 'clamp(28px, 5vw, 50px)';
-          } else {
-            logoImg.style.height = 'clamp(32px, 6vw, 60px)';
-            logoImg.style.width = 'clamp(160px, 22vw, 260px)';
-            logoImg.style.maxHeight = 'clamp(32px, 6vw, 60px)';
-          }
-        }
-        
-        if (isMobile) {
-          // On mobile: header always on top (no overlap)
-          header.style.zIndex = '9999';
-          // Keep visual style identical - no backdrop-filter or background changes
-          header.style.backdropFilter = 'none';
-          header.style.backgroundColor = '#FFFFFF';
-          header.style.transition = 'z-index 0.3s ease-out';
-          
-          // Hide overlay on mobile
-          if (headerOverlayRef.current) {
-            headerOverlayRef.current.style.display = 'none';
-          }
-        } else {
-          // Desktop: overlap behavior
-          if (shouldBeFixed) {
-            // When scrolled, header comes to front
-            header.style.zIndex = '9999';
-            // Keep visual style identical - no backdrop-filter or background changes
-            header.style.backdropFilter = 'none';
-            header.style.backgroundColor = '#FFFFFF';
-            header.style.transition = 'z-index 0.3s ease-out';
-            // Hide overlay when scrolled (header handles clicks)
-            if (headerOverlayRef.current) {
-              headerOverlayRef.current.style.display = 'none';
-            }
-          } else {
-            // Initially, header is behind hero for visual overlap
-            header.style.zIndex = '1000';
-            header.style.backdropFilter = 'none';
-            header.style.backgroundColor = '#FFFFFF';
-            header.style.transition = 'z-index 0.3s ease-out';
-            // Show transparent overlay for clickability
-            if (headerOverlayRef.current) {
-              headerOverlayRef.current.style.display = 'block';
-              // Update overlay height to match actual header height
-              const headerRect = header.getBoundingClientRect();
-              headerOverlayRef.current.style.height = `${headerRect.height}px`;
-            }
-          }
-        }
-      }
     }, 16); // ~60fps
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll(); // Initial call to set correct z-index
+    handleScroll(); // Initial call
     return () => {
       window.removeEventListener("scroll", handleScroll);
       handleScroll.cancel();
@@ -211,29 +136,6 @@ const Header: FC = () => {
     });
   }, []);
 
-  // Update overlay height to match header height
-  useEffect(() => {
-    if (!scroll && headerOverlayRef.current) {
-      const header = document.querySelector('header') as HTMLElement;
-      if (header) {
-        const updateOverlayHeight = () => {
-          if (headerOverlayRef.current && !scroll) {
-            const headerRect = header.getBoundingClientRect();
-            headerOverlayRef.current.style.height = `${headerRect.height}px`;
-          }
-        };
-        
-        // Update on mount and when scroll state changes
-        updateOverlayHeight();
-        
-        // Use ResizeObserver to update when header size changes
-        const resizeObserver = new ResizeObserver(updateOverlayHeight);
-        resizeObserver.observe(header);
-        
-        return () => resizeObserver.disconnect();
-      }
-    }
-  }, [scroll]);
 
   const navItems = [
     { label: "Home", href: "#home" },
@@ -246,21 +148,17 @@ const Header: FC = () => {
   return (
     <>
       <header
-        className={`header bg-white transition-all ${
-          scroll && "fixed-header"
-        }`}
+        className="header bg-white fixed-header"
         style={{
           position: "fixed",
           top: 0,
           left: 0,
           right: 0,
-          zIndex: 1000,
+          zIndex: 9999,
           boxShadow: "none",
-          transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-          transform: "translateY(0)",
-          pointerEvents: "auto",
-          paddingTop: scroll ? "clamp(0.05rem, 0.4vw, 0.15rem)" : "clamp(0.15rem, 0.8vw, 0.35rem)",
-          paddingBottom: scroll ? "clamp(0.05rem, 0.4vw, 0.15rem)" : "clamp(0.15rem, 0.8vw, 0.35rem)",
+          backgroundColor: "#FFFFFF",
+          paddingTop: "clamp(0.05rem, 0.4vw, 0.15rem)",
+          paddingBottom: "clamp(0.05rem, 0.4vw, 0.15rem)",
           display: "flex",
           alignItems: "center",
         }}
@@ -303,11 +201,10 @@ const Header: FC = () => {
                   alt='Baitech Logo'
                   className="header-logo"
                   style={{ 
-                    height: scroll ? "clamp(28px, 5vw, 50px)" : "clamp(32px, 6vw, 60px)", 
-                    width: scroll ? "clamp(140px, 18vw, 220px)" : "clamp(160px, 22vw, 260px)", 
-                    maxHeight: scroll ? "clamp(28px, 5vw, 50px)" : "clamp(32px, 6vw, 60px)",
+                    height: "clamp(36px, 6vw, 60px)", 
+                    width: "clamp(180px, 22vw, 260px)", 
+                    maxHeight: "clamp(36px, 6vw, 60px)",
                     objectFit: "contain",
-                    transition: "height 0.3s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                   }}
                 />
               </a>
@@ -535,191 +432,6 @@ const Header: FC = () => {
           </div>
         </div>
       </div>
-      
-      {/* Transparent clickable overlay for header buttons before scroll (Desktop only) */}
-      <div
-        ref={headerOverlayRef}
-        className="d-lg-block d-none"
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          height: 'clamp(60px, 8vw, 80px)',
-          zIndex: 10001,
-          pointerEvents: scroll ? 'none' : 'auto',
-          backgroundColor: 'transparent',
-          display: scroll ? 'none' : 'block',
-          cursor: 'default',
-        }}
-        onMouseMove={(e) => {
-          // Find which header menu item is below cursor
-          const header = document.querySelector('header');
-          if (!header) return;
-          
-          // Check if cursor is over any clickable element
-          const clickableElements = header.querySelectorAll('a, button') as NodeListOf<HTMLElement>;
-          let isOverClickable = false;
-          
-          clickableElements.forEach((el) => {
-            const rect = el.getBoundingClientRect();
-            if (
-              e.clientX >= rect.left &&
-              e.clientX <= rect.right &&
-              e.clientY >= rect.top &&
-              e.clientY <= rect.bottom
-            ) {
-              isOverClickable = true;
-              // Update cursor style on the overlay
-              if (headerOverlayRef.current) {
-                headerOverlayRef.current.style.cursor = 'pointer';
-              }
-            }
-          });
-          
-          // If not over clickable element, reset cursor
-          if (!isOverClickable && headerOverlayRef.current) {
-            headerOverlayRef.current.style.cursor = 'default';
-          }
-          
-          // Handle nav links
-          const navLinks = header.querySelectorAll('.nav-menu__link') as NodeListOf<HTMLElement>;
-          navLinks.forEach((link) => {
-            const rect = link.getBoundingClientRect();
-            if (
-              e.clientX >= rect.left &&
-              e.clientX <= rect.right &&
-              e.clientY >= rect.top &&
-              e.clientY <= rect.bottom
-            ) {
-              // Apply hover style
-              link.style.color = '#1ECAD3';
-              link.style.transform = 'translateY(-2px)';
-            } else {
-              // Remove hover style
-              const isActive = link.closest('.nav-menu__item')?.classList.contains('activePage');
-              link.style.color = isActive ? '#1ECAD3' : '#002B49';
-              link.style.transform = 'translateY(0)';
-            }
-          });
-          
-          // Handle WhatsApp button hover
-          const whatsappButton = whatsappButtonRef.current;
-          const whatsappFlair = whatsappFlairRef.current;
-          if (whatsappButton && whatsappFlair) {
-            const rect = whatsappButton.getBoundingClientRect();
-            if (
-              e.clientX >= rect.left &&
-              e.clientX <= rect.right &&
-              e.clientY >= rect.top &&
-              e.clientY <= rect.bottom
-            ) {
-              // Manually trigger hover effect
-              const x = e.clientX - rect.left;
-              const y = e.clientY - rect.top;
-              const percentX = (x / rect.width) * 100;
-              const percentY = (y / rect.height) * 100;
-              whatsappFlair.style.transformOrigin = `${percentX}% ${percentY}%`;
-              whatsappFlair.style.transform = 'scale(1)';
-              if (!whatsappFlair.style.transition) {
-                whatsappFlair.style.transition = 'transform 0.85s cubic-bezier(0.645, 0.045, 0.355, 1)';
-              }
-              // Trigger the CSS hover state by adding a class
-              whatsappButton.classList.add('group');
-            } else {
-              whatsappButton.classList.remove('group');
-            }
-          }
-          
-          // Handle logo hover
-          const logoLink = header.querySelector('.logo a') as HTMLElement;
-          if (logoLink) {
-            const rect = logoLink.getBoundingClientRect();
-            if (
-              e.clientX >= rect.left &&
-              e.clientX <= rect.right &&
-              e.clientY >= rect.top &&
-              e.clientY <= rect.bottom
-            ) {
-              if (headerOverlayRef.current) {
-                headerOverlayRef.current.style.cursor = 'pointer';
-              }
-            }
-          }
-        }}
-        onMouseLeave={() => {
-          // Reset cursor
-          if (headerOverlayRef.current) {
-            headerOverlayRef.current.style.cursor = 'default';
-          }
-          
-          // Reset all header menu items
-          const header = document.querySelector('header');
-          if (!header) return;
-          
-          const navLinks = header.querySelectorAll('.nav-menu__link') as NodeListOf<HTMLElement>;
-          navLinks.forEach((link) => {
-            const isActive = link.closest('.nav-menu__item')?.classList.contains('activePage');
-            link.style.color = isActive ? '#1ECAD3' : '#002B49';
-            link.style.transform = 'translateY(0)';
-          });
-          
-          // Reset WhatsApp button
-          const whatsappButton = whatsappButtonRef.current;
-          const whatsappFlair = whatsappFlairRef.current;
-          if (whatsappButton && whatsappFlair) {
-            whatsappButton.classList.remove('group');
-            whatsappFlair.style.transformOrigin = '50% 50%';
-            whatsappFlair.style.transform = 'scale(0)';
-          }
-        }}
-        onClick={(e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          
-          // Get the header element
-          const header = document.querySelector('header');
-          if (!header) return;
-          
-          // Find all clickable elements in header (nav links, buttons)
-          const clickableElements = header.querySelectorAll('a, button') as NodeListOf<HTMLElement>;
-          
-          // Find which element is at/near the click position
-          let targetElement: HTMLElement | null = null;
-          let minDistance = Infinity;
-          
-          clickableElements.forEach((el) => {
-            const rect = el.getBoundingClientRect();
-            const clickX = e.clientX;
-            const clickY = e.clientY;
-            
-            // Check if click is within element bounds
-            if (
-              clickX >= rect.left &&
-              clickX <= rect.right &&
-              clickY >= rect.top &&
-              clickY <= rect.bottom
-            ) {
-              // Calculate center distance for preference
-              const centerX = rect.left + rect.width / 2;
-              const centerY = rect.top + rect.height / 2;
-              const distance = Math.sqrt(
-                Math.pow(clickX - centerX, 2) + Math.pow(clickY - centerY, 2)
-              );
-              
-              if (distance < minDistance) {
-                minDistance = distance;
-                targetElement = el;
-              }
-            }
-          });
-          
-          // Trigger click on the found element
-          if (targetElement) {
-            (targetElement as HTMLElement).click();
-          }
-        }}
-      />
       
       {/* Sticky WhatsApp Floating Button - Mobile Only */}
       <a
