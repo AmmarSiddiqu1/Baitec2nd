@@ -95,6 +95,7 @@ const Basem: FC = () => {
       >
         {/* Left Column - Basem Image + Bars */}
         <div 
+          className="basem-left-column"
           style={{
             flex: "1 1 50%",
             position: "relative",
@@ -106,8 +107,9 @@ const Basem: FC = () => {
             paddingRight: "15rem"
           }}
         >
-          {/* Left Bars Container */}
+          {/* Desktop Bars Container - Hidden on mobile */}
           <div 
+            className="desktop-bars"
             style={{
               position: "absolute",
               width: "100%",
@@ -159,10 +161,51 @@ const Basem: FC = () => {
             />
           </div>
 
+          {/* Mobile Bars Container - Only visible on mobile, centered behind Basem */}
+          <div 
+            className="mobile-bars"
+            style={{
+              display: "none",
+              position: "absolute",
+              bottom: 0,
+              left: "50%",
+              transform: "translateX(-50%)",
+              height: "auto",
+              zIndex: 1,
+              pointerEvents: "none",
+              alignItems: "flex-end",
+              justifyContent: "center",
+              gap: "1rem"
+            }}
+          >
+            {/* Blue Bar Mobile - left */}
+            <img 
+              src="/assets/images/basem/basem_rb.svg" 
+              alt="Blue Bar Mobile" 
+              style={{
+                height: "400px",
+                width: "auto",
+                pointerEvents: "none"
+              }}
+            />
+            {/* Red Bar Mobile - right */}
+            <img 
+              src="/assets/images/basem/Basem_r.svg" 
+              alt="Red Bar Mobile" 
+              style={{
+                height: "350px",
+                width: "auto",
+                pointerEvents: "none",
+                marginBottom: "0.1rem"
+              }}
+            />
+          </div>
+
           {/* Basem Image */}
           <img 
             src="/assets/images/basem/Basem.webp" 
             alt="Basem" 
+            className="basem-image"
             data-aos="fade-right"
             data-aos-duration="600"
             data-aos-delay="0"
@@ -430,51 +473,190 @@ const Basem: FC = () => {
 
       {/* Responsive Styles */}
       <style>{`
-          @media (max-width: 992px) {
-            section#basem {
-              min-height: auto !important;
-            }
-            section#basem > div:first-of-type {
-              top: clamp(8rem, 20vh, 15rem) !important;
-              left: clamp(10%, 15vw, 30%) !important;
-            }
-            section#basem > div:last-of-type {
-              flex-direction: column !important;
-              gap: 2rem !important;
-            }
-            section#basem > div:last-of-type > div:first-of-type {
-              flex: 1 1 auto !important;
-              min-height: auto !important;
-              padding-right: 2rem !important;
-              padding-bottom: 2rem !important;
-            }
-            section#basem > div:last-of-type > div:last-of-type {
-              flex: 1 1 auto !important;
-              min-height: auto !important;
-              padding: 2rem !important;
-            }
+        /* Mobile: <768px - 1 column layout */
+        @media (max-width: 768px) {
+          /* Section - no fixed height */
+          section#basem {
+            min-height: auto !important;
+            padding: 2rem 0 !important;
           }
-          @media (max-width: 768px) {
-            section#basem {
-              min-height: auto !important;
-            }
-            section#basem > div:first-of-type {
-              top: clamp(5rem, 15vh, 10rem) !important;
-              left: 0 !important;
-              right: 0 !important;
-              height: 30vh !important;
-            }
-            section#basem > div:last-of-type > div:first-of-type {
-              padding-right: 1rem !important;
-              padding-bottom: 1rem !important;
-            }
-            section#basem > div:last-of-type > div:last-of-type {
-              padding: 1.5rem !important;
-            }
-            section#basem > div:last-of-type > div:last-of-type > div {
-              padding: 2rem 1.5rem !important;
-            }
+
+          /* Navy background box - adjust to cover slider area */
+          section#basem > div:first-of-type {
+            top: clamp(8rem, 20vh, 12rem) !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
           }
+
+          /* Main container - column layout */
+          section#basem > div:last-of-type {
+            flex-direction: column !important;
+            gap: 0 !important;
+            width: 100% !important;
+          }
+
+          /* Basem Image Column - First, full width */
+          .basem-left-column {
+            flex: none !important;
+            width: 100% !important;
+            min-height: auto !important;
+            padding-right: 0 !important;
+            padding-bottom: 0 !important;
+            display: flex !important;
+            align-items: flex-end !important;
+            justify-content: center !important;
+            order: 1 !important;
+            position: relative !important;
+          }
+
+          /* Hide desktop bars on mobile */
+          .desktop-bars {
+            display: none !important;
+          }
+
+          /* Show mobile bars on mobile - centered behind Basem */
+          .mobile-bars {
+            display: flex !important;
+            position: absolute !important;
+            bottom: 0 !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            z-index: 1 !important;
+            gap: 1rem !important;
+            justify-content: center !important;
+            align-items: flex-end !important;
+          }
+
+          /* Basem Image - scaled down, aligned at bottom */
+          .basem-image {
+            max-height: 400px !important;
+            width: auto !important;
+            right: 0 !important;
+            position: relative !important;
+            z-index: 2 !important;
+          }
+
+          /* Slider Column - Second, full width */
+          section#basem > div:last-of-type > div:last-of-type {
+            flex: none !important;
+            width: 100% !important;
+            min-height: auto !important;
+            padding: 0.5rem 1rem 2rem 1rem !important;
+            order: 2 !important;
+            margin-top: -1.6rem !important;
+          }
+
+          /* Slider Container - remove transform offset */
+          section#basem > div:last-of-type > div:last-of-type > div {
+            transform: none !important;
+            max-width: 100% !important;
+            padding: 0 !important;
+          }
+
+          /* Text Box - scaled down */
+          section#basem > div:last-of-type > div:last-of-type > div > div:first-of-type {
+            min-height: 280px !important;
+            padding: 2rem 1.5rem 4rem 1.5rem !important;
+          }
+
+          /* Title - smaller font */
+          section#basem > div:last-of-type > div:last-of-type > div > div:first-of-type > h2 {
+            font-size: 28px !important;
+            min-height: auto !important;
+            margin-bottom: 1rem !important;
+          }
+
+          /* Description - smaller font */
+          section#basem > div:last-of-type > div:last-of-type > div > div:first-of-type > p {
+            font-size: 16px !important;
+          }
+
+          /* Arrows container - move to bottom corners */
+          section#basem > div:last-of-type > div:last-of-type > div > div:first-of-type > div:last-of-type {
+            position: absolute !important;
+            bottom: 1rem !important;
+            left: 1.5rem !important;
+            right: 1.5rem !important;
+          }
+
+          /* Arrows - smaller size */
+          section#basem > div:last-of-type > div:last-of-type > div > div:first-of-type > div > div {
+            width: 3rem !important;
+            height: 3rem !important;
+          }
+
+          section#basem > div:last-of-type > div:last-of-type > div > div:first-of-type > div > div > button {
+            font-size: 2rem !important;
+          }
+
+          /* Progress bars - smaller */
+          section#basem > div:last-of-type > div:last-of-type > div > div:last-of-type > div {
+            max-width: 4rem !important;
+            min-width: 2.5rem !important;
+            height: 0.2rem !important;
+          }
+        }
+
+        /* Small Mobile: <480px */
+        @media (max-width: 480px) {
+          section#basem {
+            padding: 1.5rem 0 !important;
+          }
+
+          /* Basem Image - even smaller */
+          .basem-image {
+            max-height: 300px !important;
+          }
+
+          /* Mobile bars - same size as Basem */
+          .mobile-bars img[alt="Blue Bar Mobile"] {
+            height: 300px !important;
+          }
+
+          .mobile-bars img[alt="Red Bar Mobile"] {
+            height: 250px !important;
+            margin-bottom: 0.1rem !important;
+          }
+
+          /* Slider padding */
+          section#basem > div:last-of-type > div:last-of-type {
+            padding: 1.5rem 0.75rem !important;
+          }
+
+          /* Text Box - smaller */
+          section#basem > div:last-of-type > div:last-of-type > div > div:first-of-type {
+            min-height: 240px !important;
+            padding: 1.5rem 1rem 3.5rem 1rem !important;
+          }
+
+          /* Title - smaller */
+          section#basem > div:last-of-type > div:last-of-type > div > div:first-of-type > h2 {
+            font-size: 24px !important;
+          }
+
+          /* Description - smaller */
+          section#basem > div:last-of-type > div:last-of-type > div > div:first-of-type > p {
+            font-size: 14px !important;
+          }
+
+          /* Arrows - smaller */
+          section#basem > div:last-of-type > div:last-of-type > div > div:first-of-type > div > div {
+            width: 2.5rem !important;
+            height: 2.5rem !important;
+          }
+
+          section#basem > div:last-of-type > div:last-of-type > div > div:first-of-type > div > div > button {
+            font-size: 1.75rem !important;
+          }
+
+          /* Progress bars - smaller */
+          section#basem > div:last-of-type > div:last-of-type > div > div:last-of-type > div {
+            max-width: 3rem !important;
+            min-width: 2rem !important;
+            height: 0.15rem !important;
+          }
+        }
       `}</style>
     </section>
   );
