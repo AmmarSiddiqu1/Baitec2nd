@@ -100,7 +100,7 @@ const Hero: FC = () => {
                 data-aos-delay="100"
                 data-aos-easing="ease-out-cubic"
                 style={{
-                  fontSize: "clamp(32px, 5vw, 66px)",
+                  fontSize: "clamp(32px, 5vw, 60px)",
                   fontWeight: 700,
                   color: "#002B49",
                   marginBottom: "clamp(1rem, 2vw, 1.5rem)",
@@ -108,7 +108,7 @@ const Hero: FC = () => {
                   letterSpacing: "-0.04em"
                 }}
               >
-                SMARTER PROPERTY <br /> MANAGEMENT, ALL IN ONE PLACE
+                SMARTER PROPERTY MANAGEMENT, <br /> ALL IN ONE PLACE
               </h1>
 
               {/* Subheadline */}
@@ -118,7 +118,7 @@ const Hero: FC = () => {
                 data-aos-delay="200"
                 data-aos-easing="ease-out-cubic"
                 style={{
-                  fontSize: "clamp(16px, 2vw, 30px)",
+                  fontSize: "clamp(16px, 2vw, 28px)",
                   fontWeight: 400,
                   color: "#002B49",
                   lineHeight: 1.6,
@@ -127,7 +127,7 @@ const Hero: FC = () => {
                   margin: "0 auto"
                 }}
               >
-                Manage units, tenants, rent, and maintenance through <br /> one connected, intelligent platform.
+                Manage units, tenants, rent, and maintenance through one connected, intelligent platform.
               </p>
             </div>
 
@@ -307,123 +307,124 @@ const Hero: FC = () => {
           }
         }
 
-        /* Mobile: <768px - Clean vertical flex layout */
+        /* Mobile: <768px - Side-by-side bottom layout */
         @media (max-width: 768px) {
           section#home {
-            height: auto !important;
+            height: 100vh !important;
+            max-height: 100vh !important;
             min-height: 100vh !important;
-            max-height: none !important;
+            padding: 0 !important;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+            margin: 0 !important;
+            box-sizing: border-box !important;
           }
           
-          /* Main container - vertical flex */
+          /* Main container - no padding */
           section#home > div {
-            padding: 1.5rem 1rem !important;
-            display: flex !important;
-            flex-direction: column !important;
-            align-items: center !important;
-            justify-content: flex-start !important;
-            gap: 2rem !important;
-            height: auto !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            height: 100vh !important;
+            max-height: 100vh !important;
+            box-sizing: border-box !important;
           }
 
-          /* Text section - first in flex stack */
+          /* Text section - stays at top */
           section#home > div > div:first-of-type {
-            position: relative !important;
-            top: auto !important;
-            left: auto !important;
-            transform: none !important;
+            position: absolute !important;
+            top: 4rem !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
             width: 100% !important;
             max-width: 100% !important;
             padding: 0 1rem !important;
-            margin-bottom: 0 !important;
-            order: 1 !important;
-            flex-shrink: 0 !important;
+            z-index: 3 !important;
           }
 
-          /* Images container - vertical flex stack */
+          /* Images container - full viewport */
           section#home > div > div:last-of-type {
-            position: relative !important;
-            display: flex !important;
-            flex-direction: column !important;
-            align-items: center !important;
-            justify-content: flex-start !important;
-            gap: 2.5rem !important;
-            width: 100% !important;
-            height: auto !important;
-            min-height: auto !important;
-            order: 2 !important;
-            flex: 1 1 auto !important;
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            z-index: 2 !important;
+            padding: 0 !important;
+            margin: 0 !important;
           }
 
-          /* House - centered in flex */
+          /* House - bottom-left, same size as mobile */
           section#home > div > div:last-of-type img[alt="Hero House"] {
-            position: relative !important;
+            position: absolute !important;
+            bottom: -7em !important;
+            left: -20% !important;
             top: auto !important;
-            left: auto !important;
-            bottom: auto !important;
             right: auto !important;
-            max-width: 85% !important;
+            height: 55vh !important;
+            max-height: none !important;
             width: auto !important;
-            height: auto !important;
-            max-height: 21.875em !important;
-            margin: 0 auto !important;
-            order: 1 !important;
-            flex-shrink: 0 !important;
+            z-index: 1 !important;
+            pointer-events: none !important;
           }
 
-          /* Left bars - hide on mobile for clean layout */
+          /* Left bars - hide on mobile */
           section#home > div > div:last-of-type img[alt="Red Bar Left"],
           section#home > div > div:last-of-type img[alt="Blue Bar Left"] {
             display: none !important;
           }
 
-          /* Mobile - centered below house */
+          /* Mobile - bottom-right, same size as house */
           section#home > div > div:last-of-type img[alt="Hero Mobile Screen"] {
-            position: relative !important;
-            top: auto !important;
-            right: auto !important;
-            bottom: auto !important;
+            position: absolute !important;
+            bottom: -0.5em !important;
+            right: 0% !important;
             left: auto !important;
-            max-width: 65% !important;
+            top: auto !important;
+            height: 55vh !important;
+            max-height: none !important;
             width: auto !important;
-            height: auto !important;
-            max-height: 25em !important;
-            margin: 0 auto !important;
-            transform: none !important;
-            order: 2 !important;
-            flex-shrink: 0 !important;
+            z-index: 2 !important;
+            pointer-events: none !important;
           }
 
-          /* Right bars - hide on mobile for clean layout */
+          /* Right bars - hide on mobile */
           section#home > div > div:last-of-type img[alt="Red Bar Right"],
           section#home > div > div:last-of-type img[alt="Blue Bar Right"] {
             display: none !important;
           }
         }
 
-        /* Small mobile: <480px - Further adjustments */
+        /* Small mobile: <480px */
         @media (max-width: 480px) {
-          section#home > div {
-            padding: 1rem 0.75rem !important;
-            gap: 1.5rem !important;
-          }
-          
           section#home > div > div:first-of-type {
+            top: 11rem !important;
             padding: 0 0.75rem !important;
           }
           
-          section#home > div > div:last-of-type {
-            gap: 2rem !important;
+          section#home > div > div:first-of-type h1 {
+            font-size: 18px !important;
+            font-weight: 700 !important;
+            line-height: 1.2 !important;
+          }
+            
+          
+          section#home > div > div:first-of-type p {
+            font-size: 14px !important;
+            line-height: 1.5 !important;
           }
           
           section#home > div > div:last-of-type img[alt="Hero House"] {
-            max-width: 90% !important;
-            max-height: 17.5em !important;
+            height: 50vh !important;
+            left: -25% !important;
+            bottom: -7em !important;
           }
 
           section#home > div > div:last-of-type img[alt="Hero Mobile Screen"] {
-            max-width: 70% !important;
-            max-height: 21.875em !important;
+            height: 50vh !important;
+            right: -1.5% !important;
+            bottom: -0.5em !important;
           }
         }
       `}</style>
