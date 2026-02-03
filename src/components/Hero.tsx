@@ -108,7 +108,7 @@ const Hero: FC = () => {
                   letterSpacing: "-0.04em"
                 }}
               >
-                SMARTER PROPERTY MANAGEMENT, <br /> ALL IN ONE PLACE
+                <span style={{ whiteSpace: "nowrap" }}>SMARTER PROPERTY MANAGEMENT</span> <br /> ALL IN ONE PLACE
               </h1>
 
               {/* Subheadline */}
@@ -471,6 +471,18 @@ const Hero: FC = () => {
             display: none !important;
           }
 
+          /* Heading - Mobile - Larger font size, keep 2 lines */
+          section#home > div > div:first-of-type h1 {
+            font-size: 28px !important;
+            font-weight: 700 !important;
+            line-height: 1.3 !important;
+            letter-spacing: "-0.02em" !important;
+          }
+
+          section#home > div > div:first-of-type h1 span {
+            white-space: nowrap !important;
+          }
+
           /* Download Buttons - Mobile - 2 columns side-by-side */
           section#home > div > div:first-of-type > div:last-of-type {
             margin-top: 4rem !important;
@@ -497,9 +509,14 @@ const Hero: FC = () => {
           }
           
           section#home > div > div:first-of-type h1 {
-            font-size: 18px !important;
+            font-size: 24px !important;
             font-weight: 700 !important;
-            line-height: 1.2 !important;
+            line-height: 1.3 !important;
+            letter-spacing: "-0.02em" !important;
+          }
+
+          section#home > div > div:first-of-type h1 span {
+            white-space: nowrap !important;
           }
             
           
