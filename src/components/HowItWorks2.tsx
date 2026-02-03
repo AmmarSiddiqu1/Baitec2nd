@@ -100,7 +100,7 @@ const HowItWorks2: FC = () => {
         <div className="container">
           <div className="row align-items-center g-4" style={{ marginTop: "-15rem" }}> 
             {/* Left Column - Step Content & Timeline */}
-            <div className="col-lg-6" style={{ paddingLeft: "clamp(0, 2vw, 2rem)" }}>
+            <div className="col-lg-6 hiw2-content-column" style={{ paddingLeft: "clamp(0, 2vw, 2rem)" }}>
               {/* Content Box */}
               <div
                 ref={contentBoxRef}
@@ -248,7 +248,7 @@ const HowItWorks2: FC = () => {
             </div>
 
             {/* Right Column - Mobile Phone & Timeline Bars */}
-            <div className="col-lg-6" style={{ position: "relative", overflow: "visible" }}>
+            <div className="col-lg-6 hiw2-mobile-column" style={{ position: "relative", overflow: "visible" }}>
               {/* Timeline Bars Background - ADJUST: top (line 172), right (line 173), width/height (lines 174-176) for position and size */}
               <img
                 src="/assets/images/how_it_works2/timeline_bars.svg"
@@ -404,12 +404,193 @@ const HowItWorks2: FC = () => {
             display: none;
           }
         }
+
+        /* Mobile: <768px - 1 column layout */
         @media (max-width: 768px) {
+          /* Section padding - reduced navy background, allow overflow */
           #how-it-works2 > div:last-of-type {
-            padding: 2rem 1rem !important;
+            padding: 0.75rem 0.5rem !important;
+            min-height: auto !important;
+            max-height: none !important;
+            overflow: visible !important;
           }
+
+          /* Row - column layout */
           #how-it-works2 > div:last-of-type > div > div {
             flex-direction: column !important;
+            margin-top: 0 !important;
+          }
+
+          /* Mobile Column - First (order 1), pull up to overflow */
+          .hiw2-mobile-column {
+            order: 1 !important;
+            width: 100% !important;
+            padding: 0 !important;
+            margin-bottom: -2rem !important; /* Reduced gap */
+            margin-top: -8rem !important;
+            overflow: visible !important;
+            z-index: 10 !important;
+          }
+
+          /* Mobile Phone Container - remove transform, center, allow overflow for shadow */
+          .hiw2-mobile-column > div {
+            transform: none !important;
+            animation: none !important;
+            padding: 1rem 0 !important;
+            width: 100% !important;
+            min-width: auto !important;
+            justify-content: center !important;
+            overflow: visible !important;
+          }
+
+          /* Mobile Phone Image - LARGER, allow overflow for shadow */
+          .hiw2-mobile-column > div > img {
+            width: 100% !important;
+            max-width: 400px !important;
+            min-width: auto !important;
+            object-fit: contain !important;
+            margin-left: 30% !important; /* Move right to compensate for image whitespace */
+          }
+
+          /* Timeline Bars - MUCH smaller */
+          .hiw2-mobile-column > img[alt="Timeline Bars"] {
+            display: block !important;
+            position: absolute !important;
+            top: 3rem !important;
+            right: 50% !important;
+            transform: translateX(50%) !important;
+            height: 12em !important;
+            max-height: 12em !important;
+            width: auto !important;
+            z-index: 0 !important;
+          }
+
+          /* Content Column - Second (order 2) */
+          .hiw2-content-column {
+            order: 2 !important;
+            width: 100% !important;
+            padding-left: 0 !important;
+          }
+
+          /* Content Box - scaled down, narrower width */
+          .hiw2-content-column > div:first-of-type {
+            padding: 2rem 1.5rem !important;
+            margin-bottom: 1.5rem !important;
+            width: 85% !important;
+            max-width: 400px !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+          }
+
+          /* Title - smaller */
+          .hiw2-content-column > div:first-of-type > h3 {
+            font-size: 28px !important;
+            min-height: auto !important;
+            margin-bottom: 1rem !important;
+          }
+
+          /* Description - smaller */
+          .hiw2-content-column > div:first-of-type > p {
+            font-size: 16px !important;
+            min-height: auto !important;
+          }
+
+          /* Timeline - scaled down, narrower width */
+          .hiw2-content-column > div:last-of-type {
+            padding-top: 0.5rem !important;
+            width: 75% !important;
+            max-width: 300px !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+          }
+
+          /* Timeline Line - centered on circles, shorter length */
+          .hiw2-content-column > div:last-of-type > div:first-of-type {
+            top: 1.5rem !important; /* Center of 3rem circle */
+            left: 20% !important;
+            right: 20% !important;
+          }
+
+          /* Timeline Buttons - smaller */
+          .hiw2-content-column > div:last-of-type > div:last-of-type > div > div:first-of-type {
+            width: 3rem !important;
+            height: 3rem !important;
+            margin-bottom: 0.75rem !important;
+          }
+
+          /* Timeline Labels - smaller */
+          .hiw2-content-column > div:last-of-type > div:last-of-type > div > span {
+            font-size: 14px !important;
+          }
+        }
+
+        /* Small Mobile: <480px */
+        @media (max-width: 480px) {
+          #how-it-works2 > div:last-of-type {
+            padding: 0.5rem 0rem !important;
+          }
+
+          /* Mobile Column - pull up less on small screens */
+          .hiw2-mobile-column {
+            margin-top: -6rem !important;
+            margin-bottom: -2rem !important; /* Reduced gap */
+          }
+
+          /* Mobile Phone Image - still large */
+          .hiw2-mobile-column > div > img {
+            width: 100% !important;
+            max-width: 400px !important;
+          }
+
+          /* Timeline Bars - smaller */
+          .hiw2-mobile-column > img[alt="Timeline Bars"] {
+            height: 10em !important;
+            max-height: 10em !important;
+            top: 2rem !important;
+          }
+
+          /* Content Box - smaller, narrower width */
+          .hiw2-content-column > div:first-of-type {
+            padding: 1.5rem 1rem !important;
+            margin-bottom: 1rem !important;
+            width: 85% !important;
+            max-width: 350px !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+          }
+
+          /* Title - smaller */
+          .hiw2-content-column > div:first-of-type > h3 {
+            font-size: 24px !important;
+          }
+
+          /* Description - smaller */
+          .hiw2-content-column > div:first-of-type > p {
+            font-size: 14px !important;
+          }
+
+          /* Timeline - narrower width for small mobile */
+          .hiw2-content-column > div:last-of-type {
+            width: 70% !important;
+            max-width: 280px !important;
+          }
+
+          /* Timeline Line - centered on smaller circles */
+          .hiw2-content-column > div:last-of-type > div:first-of-type {
+            top: 1.25rem !important; /* Center of 2.5rem circle */
+            left: 20% !important;
+            right: 20% !important;
+          }
+
+          /* Timeline Buttons - smaller */
+          .hiw2-content-column > div:last-of-type > div:last-of-type > div > div:first-of-type {
+            width: 2.5rem !important;
+            height: 2.5rem !important;
+          }
+
+          /* Timeline Labels - smaller */
+          .hiw2-content-column > div:last-of-type > div:last-of-type > div > span {
+            font-size: 12px !important;
           }
         }
       `}</style>
