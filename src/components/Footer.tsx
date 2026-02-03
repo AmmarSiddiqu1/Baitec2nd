@@ -111,8 +111,8 @@ const Footer: FC = () => {
   }, []);
 
   return (
-    <section className="footer-five">
-      <div className="tw-mx-48-px position-relative gradient-bg-70-top-bottom z-1 rounded-top-30-px" style={{ marginLeft: "clamp(1rem, 3vw, 3rem)", marginRight: "clamp(1rem, 3vw, 3rem)" }}>
+    <section className="footer-five" style={{ width: "100%", overflowX: "hidden" }}>
+      <div className="position-relative gradient-bg-70-top-bottom z-1 rounded-top-30-px" style={{ marginLeft: "0", marginRight: "0", width: "100%", maxWidth: "100%" }}>
         {/* Top CTA Section - Contact */}
         <div id="contact" className="row justify-content-center">
           <div className="col-xxl-11">
@@ -176,7 +176,7 @@ const Footer: FC = () => {
         </div>
 
         {/* Main Footer */}
-        <div className="pt-120 tw-mx-48-px position-relative" style={{ paddingTop: "120px" }}>
+        <div className="pt-120 position-relative" style={{ paddingTop: "120px", marginLeft: "0", marginRight: "0" }}>
           <div className="container">
             <div
               className="d-flex tw-gap-6 d-flex justify-content-between flex-lg-nowrap flex-wrap"

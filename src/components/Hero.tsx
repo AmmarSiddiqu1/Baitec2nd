@@ -129,6 +129,82 @@ const Hero: FC = () => {
               >
                 Manage units, tenants, rent, and maintenance through one connected, intelligent platform.
               </p>
+
+              {/* Download Buttons */}
+              <div
+                data-aos="fade-up"
+                data-aos-duration="1000"
+                data-aos-delay="300"
+                data-aos-easing="ease-out-cubic"
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  gap: "clamp(1rem, 2vw, 1.5rem)",
+                  marginTop: "clamp(2rem, 3vw, 2.5rem)",
+                  flexWrap: "wrap"
+                }}
+              >
+                {/* Google Play Button */}
+                <a
+                  href="https://play.google.com/store/apps"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "inline-block",
+                    textDecoration: "none",
+                    transition: "all 0.3s ease",
+                    height: "clamp(45px, 6vw, 60px)"
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = "scale(1.05)";
+                    e.currentTarget.style.opacity = "0.9";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = "scale(1)";
+                    e.currentTarget.style.opacity = "1";
+                  }}
+                >
+                  <img
+                    src="/assets/images/hero/GetItOnGooglePlay_Badge_Web_color_English.svg"
+                    alt="Get it on Google Play"
+                    style={{
+                      height: "clamp(45px, 6vw, 60px)",
+                      width: "auto"
+                    }}
+                  />
+                </a>
+
+                {/* App Store Button */}
+                <a
+                  href="https://apps.apple.com/app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "inline-block",
+                    textDecoration: "none",
+                    transition: "all 0.3s ease",
+                    height: "clamp(45px, 6vw, 60px)"
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = "scale(1.05)";
+                    e.currentTarget.style.opacity = "0.9";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = "scale(1)";
+                    e.currentTarget.style.opacity = "1";
+                  }}
+                >
+                  <img
+                    src="/assets/images/hero/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg"
+                    alt="Download on the App Store"
+                    style={{
+                      height: "clamp(45px, 6vw, 60px)",
+                      width: "auto"
+                    }}
+                  />
+                </a>
+              </div>
             </div>
 
         {/* Images Container - All absolutely positioned */}
@@ -394,6 +470,23 @@ const Hero: FC = () => {
           section#home > div > div:last-of-type img[alt="Blue Bar Right"] {
             display: none !important;
           }
+
+          /* Download Buttons - Mobile - 2 columns side-by-side */
+          section#home > div > div:first-of-type > div:last-of-type {
+            margin-top: 4rem !important;
+            gap: 0.75rem !important;
+            flex-direction: row !important;
+            justify-content: center !important;
+          }
+
+          section#home > div > div:first-of-type > div:last-of-type > a {
+            height: 42px !important;
+          }
+
+          section#home > div > div:first-of-type > div:last-of-type > a img {
+            height: 42px !important;
+            width: auto !important;
+          }
         }
 
         /* Small mobile: <480px */
@@ -425,6 +518,24 @@ const Hero: FC = () => {
             height: 50vh !important;
             right: -1.5% !important;
             bottom: -0.5em !important;
+          }
+
+          /* Download Buttons - Small Mobile - Keep 2 columns */
+          section#home > div > div:first-of-type > div:last-of-type {
+            margin-top: 3.5rem !important;
+            gap: 0.75rem !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: center !important;
+          }
+
+          section#home > div > div:first-of-type > div:last-of-type > a {
+            height: 38px !important;
+          }
+
+          section#home > div > div:first-of-type > div:last-of-type > a img {
+            height: 38px !important;
+            width: auto !important;
           }
         }
       `}</style>
