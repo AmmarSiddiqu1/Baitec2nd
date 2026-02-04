@@ -472,17 +472,18 @@ const Footer: FC = () => {
 
       {/* Mobile Responsive Styles */}
       <style>{`
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
           /* Keep borderBottom from main footer container visible (thicker line) */
-          /* Hide borderTop from footer bottom section on mobile (thinner line) */
+          /* Hide borderTop from footer bottom section on mobile/tablet (thinner line) */
           section.footer-five .footer-bottom-section {
             border-top: none !important;
           }
 
           /* Main footer container - center content */
-          section.footer-five > div:last-of-type > div > div {
+          section.footer-five > div:last-of-type > div > div.footer-main-content {
             justify-content: center !important;
             align-items: center !important;
+            text-align: center !important;
           }
 
           /* Column 1 - Logo and Contact - Center */
@@ -526,7 +527,7 @@ const Footer: FC = () => {
             text-align: center !important;
           }
 
-          /* Hide dividers on mobile */
+          /* Hide dividers on mobile/tablet */
           section.footer-five > div:last-of-type > div > div > div.footer-divider {
             display: none !important;
           }
@@ -543,20 +544,27 @@ const Footer: FC = () => {
 
           section.footer-five > div:last-of-type > div > div > div:nth-of-type(2) > h5 {
             text-align: center !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
           }
 
           section.footer-five > div:last-of-type > div > div > div:nth-of-type(2) > ul {
             align-items: center !important;
             text-align: center !important;
             width: 100% !important;
+            justify-content: center !important;
           }
 
           section.footer-five > div:last-of-type > div > div > div:nth-of-type(2) > ul > li {
             text-align: center !important;
+            width: 100% !important;
+            display: flex !important;
+            justify-content: center !important;
           }
 
           section.footer-five > div:last-of-type > div > div > div:nth-of-type(2) > ul > li > a {
             text-align: center !important;
+            display: inline-block !important;
           }
 
           /* Column 3 - Newsletter - Center */
@@ -572,10 +580,13 @@ const Footer: FC = () => {
           section.footer-five > div:last-of-type > div > div > div:last-of-type > div {
             align-items: center !important;
             width: 100% !important;
+            text-align: center !important;
           }
 
           section.footer-five > div:last-of-type > div > div > div:last-of-type > div > h5 {
             text-align: center !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
           }
 
           section.footer-five > div:last-of-type > div > div > div:last-of-type form {
@@ -583,6 +594,22 @@ const Footer: FC = () => {
             margin-right: auto !important;
             max-width: 100% !important;
             width: 100% !important;
+          }
+
+          /* Terms and Conditions Links - Center */
+          section.footer-five .footer-terms-links {
+            justify-content: center !important;
+            align-items: center !important;
+            text-align: center !important;
+            width: 100% !important;
+          }
+
+          section.footer-five .footer-terms-links a {
+            text-align: center !important;
+          }
+
+          section.footer-five .terms-separator {
+            text-align: center !important;
           }
 
           /* Footer Bottom - Center */
@@ -601,11 +628,15 @@ const Footer: FC = () => {
           section.footer-five > div:last-of-type > div > div:last-of-type > div > div > p {
             text-align: center !important;
             width: 100% !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
           }
 
           section.footer-five > div:last-of-type > div > div:last-of-type > div > div > div {
             justify-content: center !important;
             width: 100% !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
           }
         }
 
