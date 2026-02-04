@@ -65,7 +65,7 @@ const FinalCTA: FC = () => {
     };
   }, []);
   return (
-    <section className="download-app py-120" style={{ background: "#FFFFFF" }}>
+    <section className="download-app py-120" style={{ background: "#FFFFFF", display: "none" }}>
       <div className="container">
               <div className="row gy-4 align-items-center">
                 {/* Left Image */}
