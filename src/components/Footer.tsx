@@ -159,7 +159,7 @@ const Footer: FC = () => {
         <div className="pt-120 position-relative" style={{ paddingTop: "120px", marginLeft: "0", marginRight: "0" }}>
           <div className="container">
             <div
-              className="d-flex tw-gap-6 d-flex justify-content-between flex-lg-nowrap flex-wrap"
+              className="d-flex tw-gap-6 d-flex justify-content-between flex-lg-nowrap flex-wrap footer-main-content"
               style={{
                 borderTop: "3px solid #1ECAD3",
                 borderBottom: "3px solid #1ECAD3",
@@ -418,7 +418,7 @@ const Footer: FC = () => {
             </div>
 
             {/* Footer Bottom */}
-            <div style={{ padding: "32px 0", borderTop: "1px solid #84DADE" }}>
+            <div className="footer-bottom-section" style={{ padding: "32px 0", borderTop: "1px solid #84DADE" }}>
               <div className="container">
                 <div className="d-flex align-items-center justify-content-between tw-gap-4 flex-wrap" style={{ gap: "16px" }}>
                   <p style={{ fontWeight: 600, color: "#002B49", margin: 0, fontSize: "16px" }}>
@@ -473,6 +473,12 @@ const Footer: FC = () => {
       {/* Mobile Responsive Styles */}
       <style>{`
         @media (max-width: 768px) {
+          /* Keep borderBottom from main footer container visible (thicker line) */
+          /* Hide borderTop from footer bottom section on mobile (thinner line) */
+          section.footer-five .footer-bottom-section {
+            border-top: none !important;
+          }
+
           /* Main footer container - center content */
           section.footer-five > div:last-of-type > div > div {
             justify-content: center !important;
