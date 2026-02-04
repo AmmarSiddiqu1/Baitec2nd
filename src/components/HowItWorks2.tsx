@@ -64,8 +64,6 @@ const HowItWorks2: FC = () => {
     "/assets/images/how_it_works2/step3.svg"
   ];
 
-  const buttonColors = ["#0a8a22", "#84DADE", "#FF4438"]; // Green, Blue, Red
-
   return (
     <section id="how-it-works2" style={{ background: "#FFFFFF", overflowX: "hidden" }}>
       {/* Top Section - Header */}
@@ -205,12 +203,8 @@ const HowItWorks2: FC = () => {
                           position: "relative",
                           zIndex: 2,
                           transform: index === activeStep ? "scale(1.1)" : "scale(1)",
-                          animation: index !== activeStep 
-                            ? (index === 0 
-                                ? "2s ease infinite pulse-green-hw2"
-                                : index === 1
-                                ? "2s ease infinite pulse-blue-hw2"
-                                : "2s ease infinite pulse-red-hw2")
+                          animation: index === activeStep 
+                            ? "2s ease infinite pulse-red-hw2"
                             : "none"
                         }}
                       >
@@ -219,7 +213,7 @@ const HowItWorks2: FC = () => {
                             width: "100%",
                             height: "100%",
                             borderRadius: "50%",
-                            backgroundColor: buttonColors[index],
+                            backgroundColor: index === activeStep ? "#FF4438" : "#84DADE", // Red if active, blue otherwise
                             boxShadow: "0 0 0 2px rgba(0, 43, 73, 0.3), 0 2px 8px rgba(0, 0, 0, 0.15)",
                             display: "flex",
                             alignItems: "center",
@@ -234,7 +228,7 @@ const HowItWorks2: FC = () => {
                         style={{
                           fontSize: "clamp(16px, 2vw, 20px)",
                           fontWeight: index === activeStep ? 700 : 400,
-                          color: index === activeStep ? "#84DADE" : "#FFFFFF",
+                          color: index === activeStep ? "#FF4438" : "#FFFFFF", // Red if active, white otherwise
                           textAlign: "center",
                           transition: "all 0.4s ease"
                         }}
