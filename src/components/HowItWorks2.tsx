@@ -259,7 +259,7 @@ const HowItWorks2: FC = () => {
                   right: "-2.4rem", // ADJUST: Move left/right
                   width: "auto", // ADJUST: Change to specific width like "500px" to increase size
                   height: "50em", // Fixed size in em - keeps bars constant regardless of mobile image
-                  maxHeight: "44em", // Fixed max height in em
+                  maxHeight: "51em", // Fixed max height in em
                   zIndex: 0,
                   pointerEvents: "none",
                   objectFit: "contain"
@@ -279,9 +279,9 @@ const HowItWorks2: FC = () => {
                       justifyContent: "center",
                       alignItems: "center",
                       padding: "2rem 0",
-                      transform: "translateX(22rem)", // ADJUST: Change value to move left/right
+                      transform: "translateX(10rem) (translateY-5rem)", // ADJUST: Change value to move left/right
                       width: "auto",
-                      minWidth: "50em", // Changed to em units
+                      minWidth: "30em", // Changed to em units
                       animation: "floatMobile 8s ease-in-out infinite"
                     }}
                   >
@@ -289,8 +289,8 @@ const HowItWorks2: FC = () => {
                   src={stepImages[activeStep]}
                   alt={steps[activeStep].title}
                   style={{
-                    width: "clamp(50em, 90vw, 90em)", // Much larger size using em units - make it huge
-                    minWidth: "75em", // Changed to em units
+                    width: "clamp(35em, 70vw, 65em)", // Much larger size using em units - make it huge
+                    minWidth: "5em", // Changed to em units
                     height: "auto",
                     objectFit: "contain",
                     willChange: "transform, opacity",
@@ -380,19 +380,19 @@ const HowItWorks2: FC = () => {
 
         @keyframes floatMobile {
           0% {
-            transform: translateX(22rem) translate(0, 0);
+            transform: translateX(8rem) translateY(-2rem) translate(0, 0);
           }
           25% {
-            transform: translateX(22rem) translate(3px, -5px);
+            transform: translateX(8rem) translateY(-2rem) translate(3px, -5px);
           }
           50% {
-            transform: translateX(22rem) translate(-2px, 3px);
+            transform: translateX(8rem) translateY(-2rem) translate(-2px, 3px);
           }
           75% {
-            transform: translateX(22rem) translate(4px, 2px);
+            transform: translateX(8rem) translateY(-2rem) translate(4px, 2px);
           }
           100% {
-            transform: translateX(22rem) translate(0, 0);
+            transform: translateX(8rem) translateY(-2rem) translate(0, 0);
           }
         }
 
