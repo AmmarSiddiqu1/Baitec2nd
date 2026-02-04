@@ -373,8 +373,8 @@ const Header: FC = () => {
             className='mobile-menu__logo' 
             onClick={(e) => {
               const currentPath = window.location.pathname;
-              // If we're on policy pages, navigate to home first
-              if (currentPath === "/privacy-policy" || currentPath === "/terms-and-conditions") {
+              // If we're on policy pages or contact-us, navigate to home first
+              if (currentPath === "/privacy-policy" || currentPath === "/terms-and-conditions" || currentPath === "/contact-us") {
                 e.preventDefault();
                 window.history.pushState({}, "", "/");
                 window.dispatchEvent(new PopStateEvent("popstate"));
@@ -406,8 +406,17 @@ const Header: FC = () => {
                     href={item.href}
                     onClick={(e) => {
                       const currentPath = window.location.pathname;
-                      // If we're on policy pages, navigate to home first
-                      if (currentPath === "/privacy-policy" || currentPath === "/terms-and-conditions") {
+                      // Handle contact-us page navigation
+                      if (item.href === "/contact-us") {
+                        e.preventDefault();
+                        window.history.pushState({ page: "contact-us" }, "", "/contact-us");
+                        window.dispatchEvent(new PopStateEvent("popstate"));
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                        handleMobileMenu();
+                        return;
+                      }
+                      // If we're on policy pages or contact-us, navigate to home first
+                      if (currentPath === "/privacy-policy" || currentPath === "/terms-and-conditions" || currentPath === "/contact-us") {
                         e.preventDefault();
                         // Navigate to home page
                         window.history.pushState({}, "", "/");

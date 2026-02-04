@@ -532,9 +532,9 @@ const Hero: FC = () => {
           }
 
           section#home > div > div:last-of-type img[alt="Hero Mobile Screen"] {
-            height: 50vh !important;
-            right: -1.5% !important;
-            bottom: -0.5em !important;
+            height: 60vh !important;
+            right: -0.5% !important;
+            bottom: -4.5em !important;
           }
 
           /* Download Buttons - Small Mobile - Keep 2 columns */
