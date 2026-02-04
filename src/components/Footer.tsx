@@ -156,15 +156,15 @@ const Footer: FC = () => {
         </div>
 
         {/* Main Footer */}
-        <div className="pt-120 position-relative" style={{ paddingTop: "120px", marginLeft: "0", marginRight: "0", paddingBottom: 0 }}>
+        <div className="pt-120 position-relative" style={{ paddingTop: "120px", marginLeft: "0", marginRight: "0" }}>
           <div className="container">
             <div
               className="d-flex tw-gap-6 d-flex justify-content-between flex-lg-nowrap flex-wrap"
               style={{
+                borderTop: "3px solid #1ECAD3",
                 borderBottom: "3px solid #1ECAD3",
                 gap: "24px",
-                padding: "80px 0 0 0",
-                marginBottom: 0,
+                padding: "80px 0",
               }}
             >
               {/* Column 1 - Logo and Contact */}
@@ -186,15 +186,12 @@ const Footer: FC = () => {
                     color: "#002B49",
                     marginBottom: "1.5rem",
                     opacity: 0.8,
-                    textAlign: "center",
-                    marginLeft: "auto",
-                    marginRight: "auto",
                   }}
                 >
                   AI-first property management built in Bahrain for the GCC
                 </p>
-                <div className="d-flex flex-column" style={{ gap: "16px", marginTop: "1.5rem", alignItems: "center" }}>
-                  <div className="d-flex align-items-center justify-content-center" style={{ gap: "12px" }}>
+                <div className="d-flex flex-column" style={{ gap: "16px", marginTop: "1.5rem" }}>
+                  <div className="d-flex align-items-center" style={{ gap: "12px" }}>
                     <span
                       style={{
                         width: "40px",
@@ -204,16 +201,15 @@ const Footer: FC = () => {
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
-                        flexShrink: 0,
                       }}
                     >
                       <i className="ph-bold ph-phone" style={{ fontSize: "clamp(16px, 2.5vw, 20px)", color: "#FFFFFF" }} />
                     </span>
-                    <span style={{ fontWeight: 600, color: "#002B49", fontSize: "clamp(14px, 1.5vw, 16px)", textAlign: "center" }}>
+                    <span style={{ fontWeight: 600, color: "#002B49", fontSize: "clamp(14px, 1.5vw, 16px)" }}>
                       +973 1234 5678
                     </span>
                   </div>
-                  <div className="d-flex align-items-center justify-content-center" style={{ gap: "12px" }}>
+                  <div className="d-flex align-items-center" style={{ gap: "12px" }}>
                     <span
                       style={{
                         width: "40px",
@@ -223,12 +219,11 @@ const Footer: FC = () => {
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
-                        flexShrink: 0,
                       }}
                     >
                       <i className="ph-bold ph-envelope-simple" style={{ fontSize: "clamp(16px, 2.5vw, 20px)", color: "#FFFFFF" }} />
                     </span>
-                    <span style={{ fontWeight: 600, color: "#002B49", fontSize: "clamp(14px, 1.5vw, 16px)", textAlign: "center" }}>
+                    <span style={{ fontWeight: 600, color: "#002B49", fontSize: "clamp(14px, 1.5vw, 16px)" }}>
                       contact@baitech.app
                     </span>
                   </div>
@@ -241,7 +236,7 @@ const Footer: FC = () => {
               </div>
 
               {/* Column 2 - Navigation */}
-              <div style={{ marginTop: "clamp(1rem, 2vw, 1.5rem)" }}>
+              <div>
                 <h5
                   style={{
                     fontWeight: 700,
@@ -288,7 +283,7 @@ const Footer: FC = () => {
               </div>
 
               {/* Column 3 - Newsletter */}
-              <div style={{ display: "flex", flexDirection: "column", height: "100%", justifyContent: "space-between", marginTop: "clamp(1rem, 2vw, 1.5rem)" }}>
+              <div style={{ display: "flex", flexDirection: "column", height: "100%", justifyContent: "space-between" }}>
                 <div>
                   <h5
                     style={{
@@ -374,7 +369,7 @@ const Footer: FC = () => {
                   className="footer-terms-links"
                   style={{ 
                     marginTop: "auto", 
-                    paddingTop: "clamp(2.5rem, 4vw, 4rem)", 
+                    paddingTop: "clamp(7.5rem, 3vw, 2rem)", 
                     display: "flex", 
                     gap: "1rem", 
                     flexWrap: "wrap",
@@ -423,7 +418,7 @@ const Footer: FC = () => {
             </div>
 
             {/* Footer Bottom */}
-            <div style={{ padding: "32px 0", marginTop: "2rem", paddingTop: "2rem" }}>
+            <div style={{ padding: "32px 0", borderTop: "1px solid #84DADE" }}>
               <div className="container">
                 <div className="d-flex align-items-center justify-content-between tw-gap-4 flex-wrap" style={{ gap: "16px" }}>
                   <p style={{ fontWeight: 600, color: "#002B49", margin: 0, fontSize: "16px" }}>
@@ -537,7 +532,6 @@ const Footer: FC = () => {
             flex-direction: column !important;
             align-items: center !important;
             width: 100% !important;
-            margin-top: 2rem !important;
             margin-bottom: 2rem !important;
           }
 
@@ -567,12 +561,6 @@ const Footer: FC = () => {
             align-items: center !important;
             width: 100% !important;
             height: auto !important;
-            margin-top: 2rem !important;
-          }
-
-          /* Terms and Privacy - Add gap from line */
-          section.footer-five > div:last-of-type > div > div > div:last-of-type > div.footer-terms-links {
-            padding-top: 2.5rem !important;
           }
 
           section.footer-five > div:last-of-type > div > div > div:last-of-type > div {
