@@ -279,7 +279,7 @@ const HowItWorks2: FC = () => {
                       justifyContent: "center",
                       alignItems: "center",
                       padding: "2rem 0",
-                      transform: "translateX(10rem) (translateY-5rem)", // ADJUST: Change value to move left/right
+                      transform: "translateX(10rem) translateY(-5rem)", // ADJUST: Change value to move left/right
                       width: "auto",
                       minWidth: "30em", // Changed to em units
                       animation: "floatMobile 8s ease-in-out infinite"
@@ -380,28 +380,84 @@ const HowItWorks2: FC = () => {
 
         @keyframes floatMobile {
           0% {
-            transform: translateX(8rem) translateY(-2rem) translate(0, 0);
+            transform: translateX(10rem) translateY(-5rem) translate(0, 0);
           }
           25% {
-            transform: translateX(8rem) translateY(-2rem) translate(3px, -5px);
+            transform: translateX(10rem) translateY(-5rem) translate(3px, -5px);
           }
           50% {
-            transform: translateX(8rem) translateY(-2rem) translate(-2px, 3px);
+            transform: translateX(10rem) translateY(-5rem) translate(-2px, 3px);
           }
           75% {
-            transform: translateX(8rem) translateY(-2rem) translate(4px, 2px);
+            transform: translateX(10rem) translateY(-5rem) translate(4px, 2px);
           }
           100% {
-            transform: translateX(8rem) translateY(-2rem) translate(0, 0);
+            transform: translateX(10rem) translateY(-5rem) translate(0, 0);
+          }
+        }
+
+        @keyframes floatMobileTablet {
+          0% {
+            transform: translateX(0rem) translateY(-3rem) translate(0, 0);
+          }
+          25% {
+            transform: translateX(0rem) translateY(-3rem) translate(3px, -5px);
+          }
+          50% {
+            transform: translateX(0rem) translateY(-3rem) translate(-2px, 3px);
+          }
+          75% {
+            transform: translateX(0rem) translateY(-3rem) translate(4px, 2px);
+          }
+          100% {
+            transform: translateX(0rem) translateY(-3rem) translate(0, 0);
           }
         }
 
         @media (max-width: 992px) {
-          #how-it-works2 > div:last-of-type > div > div > div:last-of-type {
-            margin-top: 3rem;
+          /* Tablet breakpoint - scale down desktop images proportionally */
+          .hiw2-mobile-column {
+            margin-top: 3rem !important;
+            position: relative !important;
+            overflow: visible !important;
           }
-          #how-it-works2 > div:last-of-type > div > div > div:last-of-type img[alt="Timeline Bars"] {
-            display: none;
+          
+          /* Timeline Bars - scale down for tablet but closer to desktop size */
+          .hiw2-mobile-column img[alt="Timeline Bars"] {
+            height: 48em !important;
+            max-height: 48em !important;
+            top: 4rem !important;
+            right: 50% !important;
+            transform: translateX(50%) !important;
+            position: absolute !important;
+            width: auto !important;
+            z-index: 0 !important;
+            pointer-events: none !important;
+            object-fit: contain !important;
+          }
+          
+          /* Mobile Phone Container - adjust transform for tablet, move more left */
+          .hiw2-mobile-column > div {
+            transform: translateX(0rem) translateY(-3rem) !important;
+            min-width: 20em !important;
+            width: auto !important;
+            padding: 2rem 0 !important;
+            position: relative !important;
+            z-index: 1 !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            animation: floatMobileTablet 8s ease-in-out infinite !important;
+          }
+          
+          /* Mobile Phone Image - scale down for tablet */
+          .hiw2-mobile-column > div > img {
+            width: clamp(25em, 50vw, 45em) !important;
+            min-width: 35em !important;
+            height: auto !important;
+            object-fit: contain !important;
+            transform: translate3d(0, 0, 0) scale(1) !important;
+            opacity: 1 !important;
           }
         }
 
@@ -416,9 +472,17 @@ const HowItWorks2: FC = () => {
           }
 
           /* Row - column layout */
-          #how-it-works2 > div:last-of-type > div > div {
+          #how-it-works2 > div:last-of-type > div > div.row {
             flex-direction: column !important;
             margin-top: 0 !important;
+            display: flex !important;
+          }
+          
+          /* Override Bootstrap column classes */
+          #how-it-works2 .col-lg-6 {
+            flex: 0 0 100% !important;
+            max-width: 100% !important;
+            width: 100% !important;
           }
 
           /* Mobile Column - First (order 1), pull up to overflow */
@@ -441,26 +505,33 @@ const HowItWorks2: FC = () => {
             min-width: auto !important;
             justify-content: center !important;
             overflow: visible !important;
+            position: relative !important;
+            z-index: 1 !important;
+            display: flex !important;
+            align-items: center !important;
           }
 
-          /* Mobile Phone Image - LARGER, allow overflow for shadow */
+          /* Mobile Phone Image - scaled down proportionally from desktop, move more left to center */
           .hiw2-mobile-column > div > img {
             width: 100% !important;
-            max-width: 400px !important;
+            max-width: 280px !important; /* Decreased from 400px to match desktop reduction */
             min-width: auto !important;
+            height: auto !important;
             object-fit: contain !important;
-            margin-left: 30% !important; /* Move right to compensate for image whitespace */
+            margin-left: 10% !important; /* Move more left to visually center the image */
+            transform: translate3d(0, 0, 0) scale(1) !important;
+            opacity: 1 !important;
           }
 
-          /* Timeline Bars - MUCH smaller */
+          /* Timeline Bars - increased size closer to desktop, centered */
           .hiw2-mobile-column > img[alt="Timeline Bars"] {
             display: block !important;
             position: absolute !important;
             top: 3rem !important;
             right: 50% !important;
             transform: translateX(50%) !important;
-            height: 12em !important;
-            max-height: 12em !important;
+            height: 22em !important; /* Increased from 18em, closer to desktop 50em */
+            max-height: 22em !important;
             width: auto !important;
             z-index: 0 !important;
           }
@@ -536,17 +607,25 @@ const HowItWorks2: FC = () => {
             margin-bottom: -2rem !important; /* Reduced gap */
           }
 
-          /* Mobile Phone Image - still large */
+          /* Mobile Phone Image - scaled down for small mobile, move more left to center */
           .hiw2-mobile-column > div > img {
             width: 100% !important;
-            max-width: 400px !important;
+            max-width: 250px !important; /* Decreased from 400px to match desktop reduction */
+            min-width: auto !important;
+            height: auto !important;
+            object-fit: contain !important;
+            margin-left: 10% !important; /* Move more left to visually center the image */
+            transform: translate3d(0, 0, 0) scale(1) !important;
+            opacity: 1 !important;
           }
 
-          /* Timeline Bars - smaller */
+          /* Timeline Bars - increased size closer to desktop for small mobile */
           .hiw2-mobile-column > img[alt="Timeline Bars"] {
-            height: 10em !important;
-            max-height: 10em !important;
+            height: 20em !important; /* Increased from 15em, closer to desktop 50em */
+            max-height: 20em !important;
             top: 2rem !important;
+            right: 50% !important;
+            transform: translateX(50%) !important;
           }
 
           /* Content Box - smaller, narrower width */
