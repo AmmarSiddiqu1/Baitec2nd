@@ -367,7 +367,7 @@ const Hero: FC = () => {
             max-width: 5.9375em !important;
           }
           section#home > div > div:last-of-type img[alt="Hero Mobile Screen"] {
-            top: 28em !important;
+            top: 21.875em !important;
             right: 7% !important;
             max-height: 40.625em !important;
           }
@@ -438,44 +438,27 @@ const Hero: FC = () => {
             left: -20% !important;
             top: auto !important;
             right: auto !important;
-            height: 43vh !important;
+            height: 55vh !important;
             max-height: none !important;
             width: auto !important;
-            z-index: 2 !important;
+            z-index: 1 !important;
             pointer-events: none !important;
           }
 
-          /* Left bars - show on mobile, behind house */
-          section#home > div > div:last-of-type img[alt="Red Bar Left"] {
-            position: absolute !important;
-            display: block !important;
-            top: auto !important;
-            bottom: 8vh !important;
-            left: 4em !important;
-            max-width: 3em !important;
-            z-index: 0 !important;
-            pointer-events: auto !important;
-          }
-          
+          /* Left bars - hide on mobile */
+          section#home > div > div:last-of-type img[alt="Red Bar Left"],
           section#home > div > div:last-of-type img[alt="Blue Bar Left"] {
-            position: absolute !important;
-            display: block !important;
-            top: auto !important;
-            bottom: 12vh !important;
-            left: 0.5em !important;
-            max-width: 3em !important;
-            z-index: 0 !important;
-            pointer-events: auto !important;
+            display: none !important;
           }
 
           /* Mobile - bottom-right, same size as house */
           section#home > div > div:last-of-type img[alt="Hero Mobile Screen"] {
             position: absolute !important;
-            bottom: -5em !important;
+            bottom: -0.5em !important;
             right: 0% !important;
             left: auto !important;
             top: auto !important;
-            height: 45vh !important;
+            height: 55vh !important;
             max-height: none !important;
             width: auto !important;
             z-index: 2 !important;
@@ -543,33 +526,15 @@ const Hero: FC = () => {
           }
           
           section#home > div > div:last-of-type img[alt="Hero House"] {
-            height: 43vh !important;
+            height: 50vh !important;
             left: -25% !important;
             bottom: -7em !important;
-            z-index: 2 !important;
           }
 
           section#home > div > div:last-of-type img[alt="Hero Mobile Screen"] {
-            height: 50vh !important;
+            height: 60vh !important;
             right: -0.5% !important;
-            bottom: -9.8em !important;
-          }
-
-          /* Left bars - small mobile positioning, behind house */
-          section#home > div > div:last-of-type img[alt="Red Bar Left"] {
-            top: auto !important;
-            bottom: 9.2vh !important;
-            left: 7.5em !important;
-            max-width: 3em !important;
-            z-index: 0 !important;
-          }
-          
-          section#home > div > div:last-of-type img[alt="Blue Bar Left"] {
-            top: auto !important;
-            bottom: 13.4vh !important;
-            left: 4.3em !important;
-            max-width: 3em !important;
-            z-index: 0 !important;
+            bottom: -4.5em !important;
           }
 
           /* Download Buttons - Small Mobile - Keep 2 columns */
@@ -588,34 +553,6 @@ const Hero: FC = () => {
           section#home > div > div:first-of-type > div:last-of-type > a img {
             height: 38px !important;
             width: auto !important;
-          }
-        }
-
-        /* Mobile M: 375px - Adjust bar positioning */
-        @media (max-width: 375px) {
-          section#home > div > div:last-of-type img[alt="Red Bar Left"] {
-            left: 5.5em !important;
-            max-width: 2.8em !important;
-          }
-          
-          section#home > div > div:last-of-type img[alt="Blue Bar Left"] {
-            left: 3em !important;
-            max-width: 2.8em !important;
-          }
-        }
-
-        /* Mobile S: 320px - Further adjust for smallest screens */
-        @media (max-width: 320px) {
-          section#home > div > div:last-of-type img[alt="Red Bar Left"] {
-            left: 4em !important;
-            max-width: 2.3em !important;
-            bottom: 8vh !important;
-          }
-          
-          section#home > div > div:last-of-type img[alt="Blue Bar Left"] {
-            left: 2em !important;
-            max-width: 2.3em !important;
-            bottom: 12vh !important;
           }
         }
       `}</style>
