@@ -104,11 +104,16 @@ const Hero: FC = () => {
                   fontWeight: 700,
                   color: "#002B49",
                   marginBottom: "clamp(1rem, 2vw, 1.5rem)",
-                  lineHeight: 1.4,
+                  lineHeight: "1.4",
                   letterSpacing: "-0.04em"
                 }}
               >
-                <span style={{ whiteSpace: "nowrap" }}>SMARTER PROPERTY MANAGEMENT</span> <br /> ALL IN ONE PLACE
+                <span className="desktop-headline">
+                  <span style={{ whiteSpace: "nowrap" }}>SMARTER PROPERTY MANAGEMENT</span> <br /> ALL IN ONE PLACE
+                </span>
+                <span className="mobile-headline">
+                  SMARTER PROPERTY <br /> MANAGEMENT <br /> ALL IN ONE PLACE
+                </span>
               </h1>
 
               {/* Subheadline */}
@@ -121,7 +126,7 @@ const Hero: FC = () => {
                   fontSize: "clamp(16px, 2vw, 28px)",
                   fontWeight: 400,
                   color: "#002B49",
-                  lineHeight: 1.6,
+                  lineHeight: "1.6",
                   opacity: 0.9,
                   maxWidth: "55em",
                   margin: "0 auto"
@@ -145,7 +150,6 @@ const Hero: FC = () => {
                   flexWrap: "wrap"
                 }}
               >
-                {/* Google Play Button */}
                 <a
                   href="https://play.google.com/store/apps"
                   target="_blank"
@@ -155,14 +159,6 @@ const Hero: FC = () => {
                     textDecoration: "none",
                     transition: "all 0.3s ease",
                     height: "clamp(45px, 6vw, 60px)"
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = "scale(1.05)";
-                    e.currentTarget.style.opacity = "0.9";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = "scale(1)";
-                    e.currentTarget.style.opacity = "1";
                   }}
                 >
                   <img
@@ -175,7 +171,6 @@ const Hero: FC = () => {
                   />
                 </a>
 
-                {/* App Store Button */}
                 <a
                   href="https://apps.apple.com/app"
                   target="_blank"
@@ -185,14 +180,6 @@ const Hero: FC = () => {
                     textDecoration: "none",
                     transition: "all 0.3s ease",
                     height: "clamp(45px, 6vw, 60px)"
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = "scale(1.05)";
-                    e.currentTarget.style.opacity = "0.9";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = "scale(1)";
-                    e.currentTarget.style.opacity = "1";
                   }}
                 >
                   <img
@@ -207,8 +194,8 @@ const Hero: FC = () => {
               </div>
             </div>
 
-        {/* Images Container - All absolutely positioned */}
-        <div
+        {/* Images Container */}
+        <div 
           style={{
             position: "absolute",
             top: 0,
@@ -218,7 +205,7 @@ const Hero: FC = () => {
             zIndex: 2
           }}
         >
-          {/* House Image - Left side, slightly cropped on left */}
+          {/* House Image - Left Bottom */}
           <img 
             src="/assets/images/hero/Hero_house.webp" 
             alt="Hero House" 
@@ -228,16 +215,16 @@ const Hero: FC = () => {
             data-aos-easing="ease-out"
             style={{
               position: "absolute",
-              top: "15.625em",
-              left: "-18.5em",
-              bottom: "0",
-              maxHeight: "59.375em",
+              top: "15.625rem",
+              left: "max(-18.5rem, -15vw)",
+              bottom: 0,
+              maxHeight: "59.375rem",
               zIndex: 2,
               pointerEvents: "none"
             }}
           />
 
-          {/* Red Bar Left - Decorative logo element (thinner, leftmost) */}
+          {/* Red Bar Left */}
           <img 
             src="/assets/images/hero/redbar_left.webp" 
             alt="Red Bar Left" 
@@ -247,9 +234,9 @@ const Hero: FC = () => {
             data-aos-easing="ease-out"
             style={{
               position: "absolute",
-              top: "20.3125em",
-              left: "7.2em",
-              maxWidth: "6.875em",
+              top: "20.3125rem",
+              left: "7.2rem",
+              maxWidth: "6.875rem",
               zIndex: 1,
               transition: "transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
               cursor: "pointer",
@@ -258,7 +245,7 @@ const Hero: FC = () => {
             }}
           />
 
-          {/* Blue Bar Left - Decorative logo element (thicker, closer to house) */}
+          {/* Blue Bar Left */}
           <img 
             src="/assets/images/hero/bluebar_left.webp" 
             alt="Blue Bar Left" 
@@ -268,9 +255,9 @@ const Hero: FC = () => {
             data-aos-easing="ease-out"
             style={{
               position: "absolute",
-              top: "14.375em",
+              top: "14.375rem",
               left: "0",
-              maxWidth: "6.875em",
+              maxWidth: "6.875rem",
               zIndex: 1,
               transition: "transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
               cursor: "pointer",
@@ -279,7 +266,7 @@ const Hero: FC = () => {
             }}
           />
 
-          {/* Mobile Screen Image - Right side, half visible */}
+          {/* Mobile Screen Image - Right Bottom */}
           <img 
             src="/assets/images/hero/hero_mobile_screen.webp" 
             alt="Hero Mobile Screen" 
@@ -289,43 +276,45 @@ const Hero: FC = () => {
             data-aos-easing="ease-out"
             style={{
               position: "absolute",
-              top: "25em",
+              top: "25rem",
               right: "9%",
-              bottom: "0",
-              maxHeight: "70em",
+              bottom: 0,
+              maxHeight: "70rem",
               zIndex: 2
             }}
           />
 
-          {/* Red Bar Right - Decorative logo element (second, between blue and mobile) */}
+          {/* Red Bar Right */}
           <img 
             src="/assets/images/hero/redbar_right.webp" 
             alt="Red Bar Right" 
             style={{
               position: "absolute",
-              top: "50em",
+              top: "50rem",
               right: "5.1%",
-              maxWidth: "6.25em",
+              maxWidth: "6.25rem",
               zIndex: 1,
               transition: "transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
               cursor: "pointer",
-              willChange: "transform"
+              willChange: "transform",
+              pointerEvents: "auto"
             }}
           />
 
-          {/* Blue Bar Right - Decorative logo element (first, leftmost) */}
+          {/* Blue Bar Right */}
           <img 
             src="/assets/images/hero/bluebar_right.webp" 
             alt="Blue Bar Right" 
             style={{
               position: "absolute",
-              top: "45em",
+              top: "45rem",
               right: "0%",
-              maxWidth: "6.25em",
+              maxWidth: "6.25rem",
               zIndex: 1,
               transition: "transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
               cursor: "pointer",
-              willChange: "transform"
+              willChange: "transform",
+              pointerEvents: "auto"
             }}
           />
         </div>
@@ -333,6 +322,14 @@ const Hero: FC = () => {
 
       {/* Responsive Styles */}
       <style>{`
+        /* Desktop: Show desktop headline, hide mobile headline */
+        section#home > div > div:first-of-type h1 .desktop-headline {
+          display: block;
+        }
+        section#home > div > div:first-of-type h1 .mobile-headline {
+          display: none;
+        }
+
         /* Hover Effects for Bars */
         /* Left Bars */
         section#home > div > div:last-of-type img[alt="Red Bar Left"]:hover,
@@ -367,7 +364,7 @@ const Hero: FC = () => {
             max-width: 5.9375em !important;
           }
           section#home > div > div:last-of-type img[alt="Hero Mobile Screen"] {
-            top: 21.875em !important;
+            top: 28em !important;
             right: 7% !important;
             max-height: 40.625em !important;
           }
@@ -438,27 +435,50 @@ const Hero: FC = () => {
             left: -20% !important;
             top: auto !important;
             right: auto !important;
-            height: 55vh !important;
+            height: 43vh !important;
             max-height: none !important;
             width: auto !important;
-            z-index: 1 !important;
+            z-index: 2 !important;
             pointer-events: none !important;
           }
 
-          /* Left bars - hide on mobile */
-          section#home > div > div:last-of-type img[alt="Red Bar Left"],
+          /* Left bars - show on mobile, behind house */
+          section#home > div > div:last-of-type img[alt="Red Bar Left"] {
+            position: absolute !important;
+            display: block !important;
+            top: auto !important;
+            bottom: 4.5em !important;
+            left: 4em !important;
+            max-width: 3em !important;
+            z-index: 0 !important;
+            pointer-events: auto !important;
+          }
+          
           section#home > div > div:last-of-type img[alt="Blue Bar Left"] {
-            display: none !important;
+            position: absolute !important;
+            display: block !important;
+            top: auto !important;
+            bottom: 6.5em !important;
+            left: 0.5em !important;
+            max-width: 3em !important;
+            z-index: 0 !important;
+            pointer-events: auto !important;
+          }
+
+          /* Disable hover effects on mobile */
+          section#home > div > div:last-of-type img[alt="Red Bar Left"]:hover,
+          section#home > div > div:last-of-type img[alt="Blue Bar Left"]:hover {
+            transform: none !important;
           }
 
           /* Mobile - bottom-right, same size as house */
           section#home > div > div:last-of-type img[alt="Hero Mobile Screen"] {
             position: absolute !important;
-            bottom: -0.5em !important;
+            bottom: -5em !important;
             right: 0% !important;
             left: auto !important;
             top: auto !important;
-            height: 55vh !important;
+            height: 45vh !important;
             max-height: none !important;
             width: auto !important;
             z-index: 2 !important;
@@ -471,16 +491,22 @@ const Hero: FC = () => {
             display: none !important;
           }
 
-          /* Heading - Mobile - Larger font size, keep 2 lines */
+          /* Heading - Mobile - 3 lines with reduced line spacing */
           section#home > div > div:first-of-type h1 {
             font-size: 28px !important;
             font-weight: 700 !important;
-            line-height: 1.3 !important;
+            line-height: 1.15 !important;
             letter-spacing: "-0.02em" !important;
           }
 
-          section#home > div > div:first-of-type h1 span {
-            white-space: nowrap !important;
+          /* Hide desktop headline on mobile */
+          section#home > div > div:first-of-type h1 .desktop-headline {
+            display: none !important;
+          }
+
+          /* Show mobile headline on mobile */
+          section#home > div > div:first-of-type h1 .mobile-headline {
+            display: block !important;
           }
 
           /* Download Buttons - Mobile - 2 columns side-by-side */
@@ -511,12 +537,8 @@ const Hero: FC = () => {
           section#home > div > div:first-of-type h1 {
             font-size: 24px !important;
             font-weight: 700 !important;
-            line-height: 1.3 !important;
+            line-height: 1.15 !important;
             letter-spacing: "-0.02em" !important;
-          }
-
-          section#home > div > div:first-of-type h1 span {
-            white-space: nowrap !important;
           }
             
           
@@ -526,15 +548,33 @@ const Hero: FC = () => {
           }
           
           section#home > div > div:last-of-type img[alt="Hero House"] {
-            height: 50vh !important;
+            height: 43vh !important;
             left: -25% !important;
             bottom: -7em !important;
+            z-index: 2 !important;
           }
 
           section#home > div > div:last-of-type img[alt="Hero Mobile Screen"] {
-            height: 60vh !important;
+            height: 50vh !important;
             right: -0.5% !important;
-            bottom: -4.5em !important;
+            bottom: -9.8em !important;
+          }
+
+          /* Left bars - small mobile positioning, behind house */
+          section#home > div > div:last-of-type img[alt="Red Bar Left"] {
+            top: auto !important;
+            bottom: 5.5em !important;
+            left: 7.5em !important;
+            max-width: 3em !important;
+            z-index: 0 !important;
+          }
+          
+          section#home > div > div:last-of-type img[alt="Blue Bar Left"] {
+            top: auto !important;
+            bottom: 7.5em !important;
+            left: 4.3em !important;
+            max-width: 3em !important;
+            z-index: 0 !important;
           }
 
           /* Download Buttons - Small Mobile - Keep 2 columns */
@@ -553,6 +593,34 @@ const Hero: FC = () => {
           section#home > div > div:first-of-type > div:last-of-type > a img {
             height: 38px !important;
             width: auto !important;
+          }
+        }
+
+        /* Mobile M: 375px - Adjust bar positioning */
+        @media (max-width: 375px) {
+          section#home > div > div:last-of-type img[alt="Red Bar Left"] {
+            left: 5.5em !important;
+            max-width: 2.8em !important;
+          }
+          
+          section#home > div > div:last-of-type img[alt="Blue Bar Left"] {
+            left: 3em !important;
+            max-width: 2.8em !important;
+          }
+        }
+
+        /* Mobile S: 320px - Further adjust for smallest screens */
+        @media (max-width: 320px) {
+          section#home > div > div:last-of-type img[alt="Red Bar Left"] {
+            left: 4em !important;
+            max-width: 2.3em !important;
+            bottom: 4.5em !important;
+          }
+          
+          section#home > div > div:last-of-type img[alt="Blue Bar Left"] {
+            left: 2em !important;
+            max-width: 2.3em !important;
+            bottom: 6.5em !important;
           }
         }
       `}</style>
