@@ -390,21 +390,6 @@ const HowItWorks2: FC = () => {
           }
         }
 
-        /* Mobile Phone Shadow - Elliptical shadow below phone */
-        .hiw2-mobile-column > div::after {
-          content: '';
-          position: absolute;
-          bottom: -15px;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 65%;
-          height: 30px;
-          background: radial-gradient(ellipse, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.2) 40%, transparent 70%);
-          border-radius: 50%;
-          z-index: 0;
-          pointer-events: none;
-        }
-
         @keyframes floatMobileTablet {
           0% {
             transform: translateX(0rem) translateY(-3rem) translate(0, 0);
@@ -465,15 +450,23 @@ const HowItWorks2: FC = () => {
             min-width: 35em !important;
             height: auto !important;
             object-fit: contain !important;
-            transform: translate3d(0, 0, 0) scale(1) !important;
-            opacity: 1 !important;
+            will-change: transform, opacity !important;
+            transition: opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
           }
 
-          /* Shadow - scaled for tablet */
+          /* Shadow below mobile phone image - tablet */
           .hiw2-mobile-column > div::after {
-            bottom: -12px !important;
-            width: 60% !important;
-            height: 25px !important;
+            content: '' !important;
+            position: absolute !important;
+            bottom: -10px !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            width: 70% !important;
+            height: 20px !important;
+            background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.15) 0%, transparent 70%) !important;
+            filter: blur(8px) !important;
+            z-index: 0 !important;
+            pointer-events: none !important;
           }
         }
 
@@ -535,16 +528,23 @@ const HowItWorks2: FC = () => {
             height: auto !important;
             object-fit: contain !important;
             margin-left: 10% !important; /* Move more left to visually center the image */
-            transform: translate3d(0, 0, 0) scale(1) !important;
-            opacity: 1 !important;
+            will-change: transform, opacity !important;
+            transition: opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
           }
 
-          /* Shadow - scaled for mobile */
+          /* Shadow below mobile phone image */
           .hiw2-mobile-column > div::after {
-            bottom: -8px !important;
-            width: 55% !important;
-            height: 15px !important;
-            background: radial-gradient(ellipse, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.15) 40%, transparent 70%) !important;
+            content: '' !important;
+            position: absolute !important;
+            bottom: -10px !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            width: 70% !important;
+            height: 20px !important;
+            background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.15) 0%, transparent 70%) !important;
+            filter: blur(8px) !important;
+            z-index: 0 !important;
+            pointer-events: none !important;
           }
 
           /* Timeline Bars - increased size closer to desktop, centered */
@@ -639,16 +639,23 @@ const HowItWorks2: FC = () => {
             height: auto !important;
             object-fit: contain !important;
             margin-left: 10% !important; /* Move more left to visually center the image */
-            transform: translate3d(0, 0, 0) scale(1) !important;
-            opacity: 1 !important;
+            will-change: transform, opacity !important;
+            transition: opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
           }
 
-          /* Shadow - scaled for small mobile */
+          /* Shadow below mobile phone image - small mobile */
           .hiw2-mobile-column > div::after {
-            bottom: -6px !important;
-            width: 50% !important;
-            height: 12px !important;
-            background: radial-gradient(ellipse, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.12) 40%, transparent 70%) !important;
+            content: '' !important;
+            position: absolute !important;
+            bottom: -10px !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            width: 70% !important;
+            height: 20px !important;
+            background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.15) 0%, transparent 70%) !important;
+            filter: blur(8px) !important;
+            z-index: 0 !important;
+            pointer-events: none !important;
           }
 
           /* Timeline Bars - increased size closer to desktop for small mobile */
