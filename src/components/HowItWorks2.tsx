@@ -93,7 +93,8 @@ const HowItWorks2: FC = () => {
         background: "#002B49",
         padding: "clamp(3rem, 5vw, 4.5rem) clamp(1rem, 3vw, 2rem) clamp(2rem, 4vw, 3.5rem)",
         minHeight: "55vh",
-        maxHeight: "70vh"
+        maxHeight: "70vh",
+        overflow: "visible"
       }}>
         <div className="container">
           <div className="row align-items-center g-4" style={{ marginTop: "-15rem" }}> 
@@ -254,9 +255,27 @@ const HowItWorks2: FC = () => {
                   width: "auto", // ADJUST: Change to specific width like "500px" to increase size
                   height: "50em", // Fixed size in em - keeps bars constant regardless of mobile image
                   maxHeight: "51em", // Fixed max height in em
-                  zIndex: 0,
+                  zIndex: 2, // Above shadow, below mobile image
                   pointerEvents: "none",
                   objectFit: "contain"
+                }}
+              />
+
+              {/* Shadow below mobile image - positioned outside mobile container to control z-index independently */}
+              <img
+                src="/assets/images/how_it_works2/shadow_1.svg"
+                alt="Shadow"
+                style={{
+                  position: "absolute",
+                  bottom: "0rem", // Moved slightly up
+                  left: "75%",
+                  transform: "translateX(-28%) rotate(-2deg)", // Moved more to the right
+                  width: "clamp(50em, 70vw, 70em)", // Reduced shadow size
+                  height: "auto",
+                  zIndex: 1, // Behind bars (zIndex: 2) but still visible
+                  pointerEvents: "none",
+                  opacity: 1, // Full opacity
+                  maxWidth: "100vw" // Prevent shadow from exceeding viewport width
                 }}
               />
 
@@ -268,7 +287,7 @@ const HowItWorks2: FC = () => {
                     data-aos-easing="ease-out-cubic"
                     style={{
                       position: "relative",
-                      zIndex: 1,
+                      zIndex: 3, // Above bars (zIndex: 2) so mobile image stays visible
                       display: "flex",
                       justifyContent: "center",
                       alignItems: "center",
@@ -425,7 +444,7 @@ const HowItWorks2: FC = () => {
             transform: translateX(50%) !important;
             position: absolute !important;
             width: auto !important;
-            z-index: 0 !important;
+            z-index: 2 !important; /* Above shadow, below mobile image */
             pointer-events: none !important;
             object-fit: contain !important;
           }
@@ -437,7 +456,7 @@ const HowItWorks2: FC = () => {
             width: auto !important;
             padding: 2rem 0 !important;
             position: relative !important;
-            z-index: 1 !important;
+            z-index: 3 !important; /* Above bars (zIndex: 2) so mobile image stays visible */
             display: flex !important;
             justify-content: center !important;
             align-items: center !important;
@@ -445,13 +464,27 @@ const HowItWorks2: FC = () => {
           }
           
           /* Mobile Phone Image - scale down for tablet */
-          .hiw2-mobile-column > div > img {
+          .hiw2-mobile-column > div > img:first-of-type {
             width: clamp(25em, 50vw, 45em) !important;
             min-width: 35em !important;
             height: auto !important;
             object-fit: contain !important;
             will-change: transform, opacity !important;
             transition: opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+          }
+
+          /* Shadow SVG below mobile phone image - tablet */
+          .hiw2-mobile-column > img[alt="Shadow"] {
+            position: absolute !important;
+            bottom: -2.5rem !important; /* Moved slightly up */
+            left: 50% !important;
+            transform: translateX(-28%) rotate(-2deg) !important; /* Moved more to the right */
+            width: clamp(28em, 55vw, 50em) !important; /* Reduced shadow size */
+            height: auto !important;
+            max-width: 100vw !important; /* Prevent shadow from exceeding viewport width */
+            z-index: 1 !important; /* Behind bars (zIndex: 2) but still visible */
+            pointer-events: none !important;
+            opacity: 1.0 !important; /* Full opacity */
           }
 
           /* Shadow below mobile phone image - tablet */
@@ -472,12 +505,13 @@ const HowItWorks2: FC = () => {
 
         /* Mobile: <768px - 1 column layout */
         @media (max-width: 768px) {
-          /* Section padding - reduced navy background, allow overflow */
+          /* Section padding - reduced navy background, prevent overflow */
           #how-it-works2 > div:last-of-type {
             padding: 0.75rem 0.5rem !important;
             min-height: auto !important;
             max-height: none !important;
-            overflow: visible !important;
+            overflowx: hidden !important;
+            overflowy: visible !important;
           }
 
           /* Row - column layout */
@@ -515,13 +549,13 @@ const HowItWorks2: FC = () => {
             justify-content: center !important;
             overflow: visible !important;
             position: relative !important;
-            z-index: 1 !important;
+            z-index: 3 !important; /* Above bars (zIndex: 2) so mobile image stays visible */
             display: flex !important;
             align-items: center !important;
           }
 
           /* Mobile Phone Image - scaled down proportionally from desktop, move more left to center */
-          .hiw2-mobile-column > div > img {
+          .hiw2-mobile-column > div > img:first-of-type {
             width: 100% !important;
             max-width: 280px !important; /* Decreased from 400px to match desktop reduction */
             min-width: auto !important;
@@ -530,6 +564,20 @@ const HowItWorks2: FC = () => {
             margin-left: 10% !important; /* Move more left to visually center the image */
             will-change: transform, opacity !important;
             transition: opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+          }
+
+          /* Shadow SVG below mobile phone image - mobile */
+          .hiw2-mobile-column > img[alt="Shadow"] {
+            position: absolute !important;
+            bottom: -2rem !important; /* Moved slightly up */
+            left: 50% !important;
+            transform: translateX(-28%) rotate(-2deg) !important; /* Moved more to the right */
+            width: clamp(24em, 48vw, 32em) !important; /* Reduced shadow size */
+            height: auto !important;
+            max-width: 100vw !important; /* Prevent shadow from exceeding viewport width */
+            z-index: 1 !important; /* Behind bars (zIndex: 2) but still visible */
+            pointer-events: none !important;
+            opacity: 1.0 !important; /* Full opacity */
           }
 
           /* Shadow below mobile phone image */
@@ -557,7 +605,7 @@ const HowItWorks2: FC = () => {
             height: 22em !important; /* Increased from 18em, closer to desktop 50em */
             max-height: 22em !important;
             width: auto !important;
-            z-index: 0 !important;
+            z-index: 2 !important; /* Above shadow, below mobile image */
           }
 
           /* Content Column - Second (order 2) */
@@ -632,7 +680,7 @@ const HowItWorks2: FC = () => {
           }
 
           /* Mobile Phone Image - scaled down for small mobile, move more left to center */
-          .hiw2-mobile-column > div > img {
+          .hiw2-mobile-column > div > img:first-of-type {
             width: 100% !important;
             max-width: 250px !important; /* Decreased from 400px to match desktop reduction */
             min-width: auto !important;
@@ -641,6 +689,20 @@ const HowItWorks2: FC = () => {
             margin-left: 10% !important; /* Move more left to visually center the image */
             will-change: transform, opacity !important;
             transition: opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+          }
+
+          /* Shadow SVG below mobile phone image - small mobile */
+          .hiw2-mobile-column > img[alt="Shadow"] {
+            position: absolute !important;
+            bottom: -1.5rem !important; /* Moved slightly up */
+            left: 50% !important;
+            transform: translateX(-28%) rotate(-2deg) !important; /* Moved more to the right */
+            width: clamp(22em, 45vw, 28em) !important; /* Reduced shadow size */
+            height: auto !important;
+            max-width: 100vw !important; /* Prevent shadow from exceeding viewport width */
+            z-index: 1 !important; /* Behind bars (zIndex: 2) but still visible */
+            pointer-events: none !important;
+            opacity: 1.0 !important; /* Full opacity */
           }
 
           /* Shadow below mobile phone image - small mobile */
@@ -665,6 +727,7 @@ const HowItWorks2: FC = () => {
             top: 2rem !important;
             right: 50% !important;
             transform: translateX(50%) !important;
+            z-index: 2 !important; /* Above shadow, below mobile image */
           }
 
           /* Content Box - smaller, narrower width */
