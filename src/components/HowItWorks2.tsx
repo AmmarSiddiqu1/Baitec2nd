@@ -265,17 +265,26 @@ const HowItWorks2: FC = () => {
               <img
                 src="/assets/images/how_it_works2/shadow_1.svg"
                 alt="Shadow"
+                data-aos="fade-left"
+                data-aos-duration="1200"
+                data-aos-delay="400"
+                data-aos-easing="ease-out-cubic"
                 style={{
                   position: "absolute",
                   bottom: "0rem", // Moved slightly up
                   left: "75%",
-                  transform: "translateX(-28%) rotate(-2deg)", // Moved more to the right
+                  transform: isTransitioning 
+                    ? "translateX(-28%) rotate(-2deg) translate3d(0, 12px, 0) scale(0.96)" 
+                    : "translateX(-28%) rotate(-2deg) translate3d(0, 0, 0) scale(1)",
                   width: "clamp(50em, 70vw, 70em)", // Reduced shadow size
                   height: "auto",
                   zIndex: 1, // Behind bars (zIndex: 2) but still visible
                   pointerEvents: "none",
-                  opacity: 1, // Full opacity
-                  maxWidth: "100vw" // Prevent shadow from exceeding viewport width
+                  opacity: isTransitioning ? 0 : 1, // Same opacity transition as mobile image
+                  maxWidth: "100vw", // Prevent shadow from exceeding viewport width
+                  animation: "floatShadow 8s ease-in-out infinite",
+                  willChange: "transform, opacity", // Same as mobile image
+                  transition: "opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s, transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s" // Same transition with 200ms delay
                 }}
               />
 
@@ -409,6 +418,24 @@ const HowItWorks2: FC = () => {
           }
         }
 
+        @keyframes floatShadow {
+          0% {
+            transform: translateX(-28%) rotate(-2deg) translate(0, 0);
+          }
+          25% {
+            transform: translateX(-28%) rotate(-2deg) translate(3px, -5px);
+          }
+          50% {
+            transform: translateX(-28%) rotate(-2deg) translate(-2px, 3px);
+          }
+          75% {
+            transform: translateX(-28%) rotate(-2deg) translate(4px, 2px);
+          }
+          100% {
+            transform: translateX(-28%) rotate(-2deg) translate(0, 0);
+          }
+        }
+
         @keyframes floatMobileTablet {
           0% {
             transform: translateX(0rem) translateY(-3rem) translate(0, 0);
@@ -424,6 +451,24 @@ const HowItWorks2: FC = () => {
           }
           100% {
             transform: translateX(0rem) translateY(-3rem) translate(0, 0);
+          }
+        }
+
+        @keyframes floatShadowTablet {
+          0% {
+            transform: translateX(-28%) rotate(-2deg) translate(0, 0);
+          }
+          25% {
+            transform: translateX(-28%) rotate(-2deg) translate(3px, -5px);
+          }
+          50% {
+            transform: translateX(-28%) rotate(-2deg) translate(-2px, 3px);
+          }
+          75% {
+            transform: translateX(-28%) rotate(-2deg) translate(4px, 2px);
+          }
+          100% {
+            transform: translateX(-28%) rotate(-2deg) translate(0, 0);
           }
         }
 
@@ -478,13 +523,15 @@ const HowItWorks2: FC = () => {
             position: absolute !important;
             bottom: -2.5rem !important; /* Moved slightly up */
             left: 50% !important;
-            transform: translateX(-28%) rotate(-2deg) !important; /* Moved more to the right */
+            /* Transform controlled by inline style for transitions */
             width: clamp(28em, 55vw, 50em) !important; /* Reduced shadow size */
             height: auto !important;
             max-width: 100vw !important; /* Prevent shadow from exceeding viewport width */
             z-index: 1 !important; /* Behind bars (zIndex: 2) but still visible */
             pointer-events: none !important;
-            opacity: 1.0 !important; /* Full opacity */
+            animation: floatShadowTablet 8s ease-in-out infinite !important;
+            will-change: transform, opacity !important; /* Same as mobile image */
+            transition: opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s, transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s !important; /* Same transition with 200ms delay */
           }
 
           /* Shadow below mobile phone image - tablet */
@@ -571,13 +618,15 @@ const HowItWorks2: FC = () => {
             position: absolute !important;
             bottom: -2rem !important; /* Moved slightly up */
             left: 50% !important;
-            transform: translateX(-28%) rotate(-2deg) !important; /* Moved more to the right */
+            /* Transform controlled by inline style for transitions */
             width: clamp(24em, 48vw, 32em) !important; /* Reduced shadow size */
             height: auto !important;
             max-width: 100vw !important; /* Prevent shadow from exceeding viewport width */
             z-index: 1 !important; /* Behind bars (zIndex: 2) but still visible */
             pointer-events: none !important;
-            opacity: 1.0 !important; /* Full opacity */
+            animation: floatShadow 8s ease-in-out infinite !important;
+            will-change: transform, opacity !important; /* Same as mobile image */
+            transition: opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s, transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s !important; /* Same transition with 200ms delay */
           }
 
           /* Shadow below mobile phone image */
@@ -696,13 +745,15 @@ const HowItWorks2: FC = () => {
             position: absolute !important;
             bottom: -1.5rem !important; /* Moved slightly up */
             left: 50% !important;
-            transform: translateX(-28%) rotate(-2deg) !important; /* Moved more to the right */
+            /* Transform controlled by inline style for transitions */
             width: clamp(22em, 45vw, 28em) !important; /* Reduced shadow size */
             height: auto !important;
             max-width: 100vw !important; /* Prevent shadow from exceeding viewport width */
             z-index: 1 !important; /* Behind bars (zIndex: 2) but still visible */
             pointer-events: none !important;
-            opacity: 1.0 !important; /* Full opacity */
+            animation: floatShadow 8s ease-in-out infinite !important;
+            will-change: transform, opacity !important; /* Same as mobile image */
+            transition: opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s, transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s !important; /* Same transition with 200ms delay */
           }
 
           /* Shadow below mobile phone image - small mobile */
