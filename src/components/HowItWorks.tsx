@@ -86,7 +86,7 @@ const HowItWorks: FC = () => {
                       >
                         <div className="w-full h-full rounded-full flex items-center justify-center transition-all duration-300" style={{ backgroundColor: i === activeStep ? "#FF4438" : "#84DADE", boxShadow: "0 0 0 2px rgba(0,43,73,0.3), 0 2px 8px rgba(0,0,0,0.15)" }} />
                       </div>
-                      <span className="text-center transition-all duration-400 leading-tight" style={{ fontSize: "clamp(9px, 1.1vw, 13px)", fontWeight: i === activeStep ? 700 : 400, color: i === activeStep ? "#FF4438" : "#FFFFFF", width: "clamp(55px, 7vw, 85px)" }}>
+                      <span className="text-center transition-all duration-400 leading-tight" style={{ fontSize: "clamp(9px, 1.1vw, 13px)", fontWeight: 600, color: i === activeStep ? "#FF4438" : "#FFFFFF", width: "clamp(72px, 9vw, 110px)", minHeight: "2.6em" }}>
                         {step.title}
                       </span>
                     </div>
@@ -112,8 +112,8 @@ const HowItWorks: FC = () => {
                 />
               </div>
               {/* Shadow under phone */}
-              <div className="absolute bottom-0 left-0 right-0 overflow-visible pointer-events-none" style={{ height: "7rem", zIndex: 2 }}>
-                <img src="/assets/images/hero/shadow_1.svg" alt="Shadow" className="absolute pointer-events-none" style={{ bottom: "1rem", left: "90%", transform: "translateX(-50%) rotate(-6deg)", width: "clamp(27em, 45vw, 36em)", height: "auto", opacity: isTransitioning ? 0 : 0.78 }} />
+              <div className="absolute bottom-0 left-0 right-0 overflow-visible pointer-events-none" style={{ height: "8.5rem", zIndex: 2 }}>
+                <img src="/assets/images/hero/shadow_1.svg" alt="Shadow" className="absolute pointer-events-none" style={{ bottom: "2.2rem", left: "90%", transform: "translateX(-50%) rotate(-6deg)", width: "clamp(30em, 50vw, 40em)", height: "auto", opacity: isTransitioning ? 0 : 0.78 }} />
               </div>
             </div>
           </div>
@@ -121,7 +121,7 @@ const HowItWorks: FC = () => {
       </div>
 
       <style>{`
-        .hiw-section { overflow-x: hidden; overflow-y: visible; }
+        .hiw-section { overflow-x: hidden; overflow-y: hidden; }
         .hiw-right-col { overflow: visible !important; }
 
         @media (max-width: 1023px) {

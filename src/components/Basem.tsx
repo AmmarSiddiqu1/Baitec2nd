@@ -1,4 +1,10 @@
 import { useState, type FC } from "react";
+import newBasem from "../../fAssets/SVG/newbasim.svg";
+import rentTrackingScreen from "../../fAssets/SVG/rent_tracking.svg";
+import maintenanceManagementScreen from "../../fAssets/SVG/maintenance_management.svg";
+import tenantInformationScreen from "../../fAssets/SVG/Tenant information.svg";
+import unitStatusUpdateScreen from "../../fAssets/SVG/Unit status update.svg";
+import instantUpdatesScreen from "../../fAssets/SVG/Instant_updates.svg";
 
 const slides = [
   { title: "Let Basem handle it", description: "Your Ai property assistant on Whatsapp. Available 24/7." },
@@ -9,40 +15,59 @@ const slides = [
   { title: "Instant updates and responses", description: "You can ask Basem questions or request updates anytime, and he responds instantly with clear information." },
 ];
 
+const slideVisuals = [
+  newBasem,
+  rentTrackingScreen,
+  maintenanceManagementScreen,
+  tenantInformationScreen,
+  unitStatusUpdateScreen,
+  instantUpdatesScreen,
+];
+
 const Basem: FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isBoundaryVisualTransition, setIsBoundaryVisualTransition] = useState(false);
+  const isBasemSlide = currentSlide === 0;
 
-  const handlePrev = () => {
+  const isBasemBoundaryTransition = (from: number, to: number) =>
+    (from === 0 && to !== 0) || (from !== 0 && to === 0);
+
+  const changeSlide = (nextSlide: number) => {
     if (isTransitioning) return;
+    setIsBoundaryVisualTransition(isBasemBoundaryTransition(currentSlide, nextSlide));
     setIsTransitioning(true);
     setTimeout(() => {
-      setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
-      setTimeout(() => setIsTransitioning(false), 50);
+      setCurrentSlide(nextSlide);
+      setTimeout(() => {
+        setIsTransitioning(false);
+        setIsBoundaryVisualTransition(false);
+      }, 50);
     }, 300);
+  };
+
+  const handlePrev = () => {
+    const nextSlide = currentSlide === 0 ? slides.length - 1 : currentSlide - 1;
+    changeSlide(nextSlide);
   };
 
   const handleNext = () => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-      setTimeout(() => setIsTransitioning(false), 50);
-    }, 300);
+    const nextSlide = currentSlide === slides.length - 1 ? 0 : currentSlide + 1;
+    changeSlide(nextSlide);
   };
 
   return (
-    <section id="basem" className="relative flex items-stretch overflow-hidden" style={{ height: "1000px", maxHeight: "1000px", backgroundColor: "#ffffff", padding: 0 }}>
+    <section id="basem" className="relative flex items-stretch overflow-hidden" style={{ height: "min(900px, calc(100vh - 80px))", maxHeight: "900px", backgroundColor: "#ffffff", padding: 0 }}>
       {/* Navy background box */}
       <div className="absolute right-0 bottom-0" style={{ top: "clamp(10rem, 25vh, 21rem)", left: "clamp(15%, 20vw, 20%)", backgroundColor: "#002B49", zIndex: 0 }} />
 
       <div className="w-full flex flex-row items-stretch relative z-[1]" style={{ flex: "1 1 auto" }}>
         {/* Left Column - Basem Image + Bars */}
-        <div className="basem-left-column relative flex items-end justify-end overflow-hidden" style={{ flex: "1 1 50%", minHeight: "1000px", paddingRight: "15rem" }}>
+        <div className="basem-left-column relative flex items-end justify-end overflow-visible" style={{ flex: "1 1 50%", minHeight: "100%", paddingRight: "15rem" }}>
           {/* Desktop Bars */}
-          <div className="desktop-bars absolute inset-0 z-[1] pointer-events-none overflow-hidden">
+          <div className="desktop-bars absolute inset-0 z-[1] pointer-events-none overflow-visible">
             <img src="/assets/images/basem/redbar_left.webp" alt="" className="absolute pointer-events-none" style={{ top: "30em", left: "30em", width: "20em", height: "auto", zIndex: 1 }} />
-            <img src="/assets/images/basem/bluebar_left.webp" alt="" className="absolute pointer-events-none overflow-hidden" style={{ top: "15em", left: "0", width: "15em", height: "auto", zIndex: 1 }} />
+            <img src="/assets/images/basem/bluebar_left.webp" alt="" className="absolute pointer-events-none overflow-visible" style={{ top: "1em", left: "0", width: "25em", height: "auto", zIndex: 1 }} />
           </div>
 
           {/* Mobile Bars */}
@@ -53,15 +78,28 @@ const Basem: FC = () => {
 
           {/* Basem Image */}
           <img
-            src="/assets/images/basem/Basem.webp"
-            alt="Basem"
+            src={slideVisuals[currentSlide]}
+            alt={isBasemSlide ? "Basem" : slides[currentSlide].title}
             className="basem-image relative z-[2]"
-            style={{ width: "auto", maxHeight: "1000px", objectFit: "contain", right: "2em" }}
+            style={{
+              width: "auto",
+              height: isBasemSlide ? "min(860px, calc(100vh - 120px))" : "min(760px, calc(100vh - 190px))",
+              maxHeight: isBasemSlide ? "min(860px, calc(100vh - 120px))" : "min(760px, calc(100vh - 190px))",
+              objectFit: "contain",
+              objectPosition: "bottom right",
+              alignSelf: "flex-end",
+              right: "2em",
+              opacity: isTransitioning && isBoundaryVisualTransition ? 0 : 1,
+              transform: isTransitioning && isBoundaryVisualTransition
+                ? "translateY(10px) scale(0.985)"
+                : (isBasemSlide ? "translateY(0) scale(1)" : "translateY(0.9rem) scale(1)"),
+              transition: "opacity 0.35s ease, transform 0.35s ease, max-height 0.35s ease, height 0.35s ease",
+            }}
           />
         </div>
 
         {/* Right Column - Slider */}
-        <div className="flex flex-col justify-center items-center relative" style={{ flex: "1 1 50%", minHeight: "1000px" }}>
+        <div className="flex flex-col justify-center items-center relative" style={{ flex: "1 1 50%", minHeight: "100%" }}>
           <div className="relative w-full flex flex-col items-center gap-6" style={{ maxWidth: "90em", transform: "translateX(-10em) translateY(5em)" }}>
             {/* Text Box */}
             <div className="relative w-full flex flex-col" style={{ backgroundColor: "transparent", border: "3px solid #ffffff", borderRadius: "1.5rem", padding: "3rem 2.5rem 5.5rem 2.5rem", minHeight: "400px" }}>
@@ -116,7 +154,7 @@ const Basem: FC = () => {
 
       <style>{`
         @media (max-width: 768px) {
-          section#basem { min-height: auto; padding: 2rem 0; }
+          section#basem { min-height: auto; height: auto !important; max-height: none !important; padding: 2rem 0; }
           section#basem > div:first-of-type { top: clamp(8rem, 20vh, 12rem); left: 0; }
           section#basem > div:last-of-type { flex-direction: column; }
           .basem-left-column { flex: none; width: 100%; min-height: auto; padding-right: 0; justify-content: center; order: 1; }
