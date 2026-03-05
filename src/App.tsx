@@ -1,131 +1,71 @@
-import type { FC } from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, type FC } from "react";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Basem from "./components/Basem";
 import NewFeatured from "./components/NewFeatured";
-import HowItWorks2 from "./components/HowItWorks2";
+import ManageBuilding from "./components/ManageBuilding";
+import HowItWorks from "./components/HowItWorks";
 import Metrics from "./components/Metrics";
-import FinalCTA from "./components/FinalCTA";
 import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import TermsAndConditions from "./components/TermsAndConditions";
 import ContactUs from "./components/ContactUs";
-import SmoothScroll from "./helper/SmoothScroll";
-import InitializeAOS from "./helper/InitializeAOS";
 
 const App: FC = () => {
-  // Initialize state based on current pathname to avoid initial render issue
-  const getInitialPage = (): string => {
+  const getPage = () => {
     const path = window.location.pathname;
-    if (path === "/privacy-policy") {
-      return "privacy-policy";
-    } else if (path === "/terms-and-conditions") {
-      return "terms-and-conditions";
-    } else if (path === "/contact-us") {
-      return "contact-us";
-    }
+    if (path === "/privacy-policy") return "privacy-policy";
+    if (path === "/terms-and-conditions") return "terms-and-conditions";
+    if (path === "/contact-us") return "contact-us";
     return "home";
   };
 
-  const [currentPage, setCurrentPage] = useState<string>(getInitialPage());
+  const [currentPage, setCurrentPage] = useState(getPage);
 
   useEffect(() => {
-    // Check current pathname on mount and updates
-    const path = window.location.pathname;
-    if (path === "/privacy-policy") {
-      setCurrentPage("privacy-policy");
-    } else if (path === "/terms-and-conditions") {
-      setCurrentPage("terms-and-conditions");
-    } else if (path === "/contact-us") {
-      setCurrentPage("contact-us");
-    } else {
-      setCurrentPage("home");
-    }
-
-    // Listen for popstate events (back/forward buttons and programmatic navigation)
-    const handlePopState = () => {
-      const path = window.location.pathname;
-      if (path === "/privacy-policy") {
-        setCurrentPage("privacy-policy");
-      } else if (path === "/terms-and-conditions") {
-        setCurrentPage("terms-and-conditions");
-      } else if (path === "/contact-us") {
-        setCurrentPage("contact-us");
-      } else {
-        setCurrentPage("home");
-        // Handle hash navigation if present
-        const hash = window.location.hash;
-        if (hash) {
-          setTimeout(() => {
-            const element = document.getElementById(hash.substring(1));
-            if (element) {
-              element.scrollIntoView({ behavior: "smooth", block: "start" });
-            }
-          }, 100);
-        }
-      }
-    };
-
-    window.addEventListener("popstate", handlePopState);
-    return () => window.removeEventListener("popstate", handlePopState);
+    const onPopState = () => setCurrentPage(getPage());
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
   }, []);
 
-  // Handle navigation
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      const link = target.closest("a[href^='/']");
-      if (link) {
-        const href = link.getAttribute("href");
-        if (href === "/privacy-policy" || href === "/terms-and-conditions" || href === "/contact-us") {
-          e.preventDefault();
-          e.stopPropagation();
-          const newPage = href === "/privacy-policy" ? "privacy-policy" : href === "/terms-and-conditions" ? "terms-and-conditions" : "contact-us";
-          window.history.pushState({ page: newPage }, "", href);
-          setCurrentPage(newPage);
-          // Scroll to top
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        }
+      const link = (e.target as HTMLElement).closest("a[href^='/']");
+      if (!link) return;
+      const href = link.getAttribute("href");
+      if (href === "/privacy-policy" || href === "/terms-and-conditions" || href === "/contact-us") {
+        e.preventDefault();
+        e.stopPropagation();
+        window.history.pushState({}, "", href);
+        setCurrentPage(getPage());
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
     };
-
-    document.addEventListener("click", handleClick, true); // Use capture phase
+    document.addEventListener("click", handleClick, true);
     return () => document.removeEventListener("click", handleClick, true);
   }, []);
 
-  // Scroll to top when page changes
   useEffect(() => {
-    if (currentPage === "privacy-policy" || currentPage === "terms-and-conditions" || currentPage === "contact-us") {
+    if (currentPage !== "home") {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }, [currentPage]);
 
-  if (currentPage === "privacy-policy") {
-    return <PrivacyPolicy />;
-  }
-
-  if (currentPage === "terms-and-conditions") {
-    return <TermsAndConditions />;
-  }
-
-  if (currentPage === "contact-us") {
-    return <ContactUs />;
-  }
+  if (currentPage === "privacy-policy") return <PrivacyPolicy />;
+  if (currentPage === "terms-and-conditions") return <TermsAndConditions />;
+  if (currentPage === "contact-us") return <ContactUs />;
 
   return (
     <div>
-      <SmoothScroll />
-      <InitializeAOS />
       <Header />
       <Hero />
       <Basem />
       <NewFeatured />
-      <HowItWorks2 />
+      <HowItWorks />
       <Metrics />
-      <FinalCTA />
       <FAQ />
+      <ManageBuilding />
       <Footer />
     </div>
   );

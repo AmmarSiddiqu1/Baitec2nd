@@ -1,334 +1,124 @@
 import type { FC } from "react";
-import { useState } from "react";
-import Header from "./Header";
-import Footer from "./Footer";
-import { headingStyles, bodyStyles } from "../utils/styles";
-import { COLORS } from "../constants";
 
 const ContactUs: FC = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
-    // Reset form
-    setFormData({ name: "", email: "", message: "" });
-    alert("Thank you for your message! We'll get back to you soon.");
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const sectionStyle = {
-    paddingTop: "clamp(100px, 14vw, 160px)",
-    paddingBottom: "120px",
-    minHeight: "80vh",
-    background: "#F5F8FC",
-  };
-
-  const contentStyle = {
-    maxWidth: "1200px",
-    margin: "0 auto",
-  };
-
-  const cardStyle = {
-    background: COLORS.white,
-    padding: "clamp(2rem, 4vw, 3rem)",
-    borderRadius: "16px",
-    boxShadow: "0 4px 20px rgba(0, 0, 0, 0.08)",
-  };
-
-  const pStyle = {
-    ...bodyStyles.medium,
-    color: COLORS.neutral500,
-    lineHeight: 1.8,
-    marginBottom: "1.5rem",
-  };
-
-  const inputGroupStyle = {
-    position: "relative" as const,
-    marginBottom: "1.5rem",
-  };
-
-  const inputStyle = {
-    width: "100%",
-    padding: "clamp(0.75rem, 1.5vw, 1rem) clamp(0.75rem, 1.5vw, 1rem) clamp(0.75rem, 1.5vw, 1rem) clamp(2.5rem, 4vw, 3rem)",
-    border: "1px solid #E0E0E0",
-    borderRadius: "8px",
-    fontSize: "clamp(14px, 1.5vw, 16px)",
-    fontFamily: "'Filson Pro', sans-serif",
-    color: COLORS.darkNavy,
-    transition: "all 0.3s ease",
-    outline: "none",
-  };
-
-  const textareaStyle = {
-    ...inputStyle,
-    minHeight: "120px",
-    resize: "vertical" as const,
-    fontFamily: "'Filson Pro', sans-serif",
-  };
-
-  const iconStyle = {
-    position: "absolute" as const,
-    left: "clamp(0.75rem, 1.5vw, 1rem)",
-    top: "50%",
-    transform: "translateY(-50%)",
-    fontSize: "clamp(18px, 2vw, 20px)",
-    color: COLORS.mediumBlue,
-  };
-
-  const buttonStyle = {
-    backgroundColor: COLORS.mediumBlue,
-    color: COLORS.white,
-    border: "none",
-    borderRadius: "8px",
-    padding: "clamp(0.75rem, 1.5vw, 1rem) clamp(2rem, 3vw, 2.5rem)",
-    fontSize: "clamp(14px, 1.5vw, 16px)",
-    fontWeight: 600,
-    fontFamily: "'Filson Pro', sans-serif",
-    cursor: "pointer",
-    display: "flex",
-    alignItems: "center",
-    gap: "0.5rem",
-    transition: "all 0.3s ease",
-    marginTop: "1rem",
-  };
-
-  const contactItemStyle = {
-    display: "flex",
-    alignItems: "flex-start",
-    gap: "1rem",
-    marginBottom: "2rem",
-  };
-
-  const contactIconStyle = {
-    width: "clamp(40px, 5vw, 50px)",
-    height: "clamp(40px, 5vw, 50px)",
-    borderRadius: "50%",
-    background: `linear-gradient(135deg, ${COLORS.mediumBlue} 0%, ${COLORS.darkerBlue} 100%)`,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    flexShrink: 0,
-    fontSize: "clamp(18px, 2vw, 22px)",
-    color: COLORS.white,
-  };
-
-  const contactContentStyle = {
-    flex: 1,
-  };
-
-  const contactTitleStyle = {
-    ...headingStyles.h4,
-    fontSize: "clamp(16px, 2vw, 18px)",
-    marginBottom: "0.5rem",
-    color: COLORS.darkNavy,
-  };
-
-  const contactTextStyle = {
-    ...bodyStyles.medium,
-    color: COLORS.neutral600,
-    lineHeight: 1.6,
-    margin: 0,
-  };
-
-  const socialIconStyle = {
-    width: "40px",
-    height: "40px",
-    borderRadius: "50%",
-    border: "1px solid #E0E0E0",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    fontSize: "18px",
-    color: COLORS.darkNavy,
-    background: COLORS.white,
-    transition: "all 0.3s ease",
-    cursor: "pointer",
-    textDecoration: "none",
-  };
-
   return (
-    <div>
-      <Header />
-      <style>{`
-        @media (max-width: 991px) {
-          .contact-page-section {
-            padding-top: clamp(100px, 20vw, 180px) !important;
-          }
-        }
+    <div className="min-h-screen bg-white">
+      {/* Header */}
+      <header className="bg-baitech-navy py-6">
+        <div className="max-w-4xl mx-auto px-4 flex items-center justify-between">
+          <a href="/" className="transition-transform hover:-translate-y-0.5">
+            <img src="/assets/images/logo/Logo.svg" alt="BaiTech" className="h-10 brightness-0 invert" />
+          </a>
+          <a
+            href="/"
+            className="text-white/70 text-sm hover:text-baitech-teal transition-colors"
+          >
+            &larr; Back to Home
+          </a>
+        </div>
+      </header>
 
-        .contact-form-input:focus {
-          border-color: ${COLORS.mediumBlue} !important;
-          box-shadow: 0 0 0 3px rgba(30, 202, 211, 0.1) !important;
-        }
+      {/* Content */}
+      <div className="max-w-4xl mx-auto px-4 py-16">
+        <h1 className="text-4xl font-bold text-baitech-navy mb-4">Contact Us</h1>
+        <p className="text-gray-600 text-lg mb-12">
+          Have questions? We'd love to hear from you. Reach out and we'll respond as soon as we can.
+        </p>
 
-        .contact-button:hover {
-          background: ${COLORS.darkerBlue} !important;
-          transform: translateY(-2px);
-          box-shadow: 0 4px 12px rgba(30, 202, 211, 0.3);
-        }
-
-        .contact-button:active {
-          transform: translateY(0);
-        }
-
-        .social-icon:hover {
-          background: ${COLORS.mediumBlue} !important;
-          color: ${COLORS.white} !important;
-          border-color: ${COLORS.mediumBlue} !important;
-          transform: translateY(-2px);
-        }
-
-        @media (max-width: 768px) {
-          .contact-grid {
-            flex-direction: column !important;
-          }
-          
-          .contact-form-section,
-          .contact-info-section {
-            width: 100% !important;
-          }
-        }
-      `}</style>
-      <section className="contact-page-section" style={sectionStyle}>
-        <div className="container">
-          <div style={contentStyle}>
-            <h1 style={{ ...headingStyles.h1, marginBottom: "1rem", textAlign: "center" as const }}>
-              Contact Us
-            </h1>
-            <p style={{ ...pStyle, textAlign: "center" as const, marginBottom: "3rem" }}>
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque inventore
-            </p>
-
-            <div className="contact-grid" style={{ display: "flex", gap: "clamp(2rem, 4vw, 3rem)", flexWrap: "wrap" }}>
-              {/* Contact Form Section */}
-              <div className="contact-form-section" style={{ ...cardStyle, flex: "1 1 500px" }}>
-                <h2 style={{ ...headingStyles.h3, fontSize: "clamp(20px, 3vw, 24px)", marginBottom: "1rem" }}>
-                  Fill Up The Form
-                </h2>
-                <p style={{ ...bodyStyles.small, color: COLORS.neutral500, marginBottom: "2rem" }}>
-                  Your email address will not be published. Required fields are marked *
-                </p>
-
-                <form onSubmit={handleSubmit}>
-                  {/* Name Field */}
-                  <div style={inputGroupStyle}>
-                    <i className="ph-bold ph-user" style={iconStyle}></i>
-                    <input
-                      type="text"
-                      name="name"
-                      placeholder="Your Name*"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      className="contact-form-input"
-                      style={inputStyle}
-                    />
-                  </div>
-
-                  {/* Email Field */}
-                  <div style={inputGroupStyle}>
-                    <i className="ph-bold ph-envelope-simple" style={iconStyle}></i>
-                    <input
-                      type="email"
-                      name="email"
-                      placeholder="Email Address*"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="contact-form-input"
-                      style={inputStyle}
-                    />
-                  </div>
-
-                  {/* Message Field */}
-                  <div style={inputGroupStyle}>
-                    <i className="ph-bold ph-pencil" style={{ ...iconStyle, top: "clamp(0.75rem, 1.5vw, 1rem)", transform: "none" }}></i>
-                    <textarea
-                      name="message"
-                      placeholder="Enter Your Message here"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      className="contact-form-input"
-                      style={textareaStyle}
-                    />
-                  </div>
-
-                  {/* Submit Button */}
-                  <button type="submit" className="contact-button" style={buttonStyle}>
-                    <i className="ph-bold ph-paper-plane-tilt"></i>
-                    Get In Touch
-                  </button>
-                </form>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          {/* Contact Methods */}
+          <div className="space-y-8">
+            {/* WhatsApp */}
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 bg-baitech-navy/5 rounded-xl flex items-center justify-center flex-shrink-0">
+                <img src="/assets/images/logo/whatsapp-business.svg" alt="" className="w-6 h-6" />
               </div>
+              <div>
+                <h3 className="font-semibold text-baitech-navy mb-1">WhatsApp</h3>
+                <a
+                  href="https://wa.me/97336522255"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-baitech-teal hover:underline"
+                >
+                  +973 3652 2255
+                </a>
+              </div>
+            </div>
 
-              {/* Contact Information Section */}
-              <div className="contact-info-section" style={{ flex: "1 1 400px", marginTop: "clamp(2rem, 4vw, 3rem)" }}>
-                {/* Phone */}
-                <div style={contactItemStyle}>
-                  <div style={contactIconStyle}>
-                    <i className="ph-bold ph-phone"></i>
-                  </div>
-                  <div style={contactContentStyle}>
-                    <h3 style={contactTitleStyle}>Phone</h3>
-                    <p style={contactTextStyle}>+973 1234 5678</p>
-                    <p style={contactTextStyle}>+973 9876 5432</p>
-                  </div>
-                </div>
+            {/* Email */}
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 bg-baitech-navy/5 rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg className="w-6 h-6 text-baitech-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="font-semibold text-baitech-navy mb-1">Email</h3>
+                <a
+                  href="mailto:support@baitech.io"
+                  className="text-baitech-teal hover:underline"
+                >
+                  support@baitech.io
+                </a>
+              </div>
+            </div>
 
-                {/* Email & Website */}
-                <div style={contactItemStyle}>
-                  <div style={contactIconStyle}>
-                    <i className="ph-bold ph-envelope-simple"></i>
-                  </div>
-                  <div style={contactContentStyle}>
-                    <h3 style={contactTitleStyle}>Email</h3>
-                    <p style={contactTextStyle}>contact@baitech.app</p>
-                    <p style={contactTextStyle}>www.baitech.app</p>
-                  </div>
-                </div>
-
-                {/* Social Media */}
-                <div style={contactItemStyle}>
-                  <div style={contactIconStyle}>
-                    <i className="ph-bold ph-share-network"></i>
-                  </div>
-                  <div style={contactContentStyle}>
-                    <h3 style={contactTitleStyle}>Social</h3>
-                    <div style={{ display: "flex", gap: "0.75rem", marginTop: "0.5rem", flexWrap: "wrap" }}>
-                      <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-icon" style={socialIconStyle}>
-                        <i className="ph-bold ph-facebook-logo"></i>
-                      </a>
-                      <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-icon" style={socialIconStyle}>
-                        <i className="ph-bold ph-twitter-logo"></i>
-                      </a>
-                      <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-icon" style={socialIconStyle}>
-                        <i className="ph-bold ph-instagram-logo"></i>
-                      </a>
-                      <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="social-icon" style={socialIconStyle}>
-                        <i className="ph-bold ph-youtube-logo"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
+            {/* Location */}
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 bg-baitech-navy/5 rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg className="w-6 h-6 text-baitech-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="font-semibold text-baitech-navy mb-1">Location</h3>
+                <p className="text-gray-600">Bahrain</p>
               </div>
             </div>
           </div>
+
+          {/* Contact Form */}
+          <div className="bg-gray-50 rounded-2xl p-8">
+            <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-baitech-navy mb-1">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-baitech-teal focus:ring-2 focus:ring-baitech-teal/20 outline-none transition-all"
+                  placeholder="Your name"
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-baitech-navy mb-1">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-baitech-teal focus:ring-2 focus:ring-baitech-teal/20 outline-none transition-all"
+                  placeholder="your@email.com"
+                />
+              </div>
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-baitech-navy mb-1">Message</label>
+                <textarea
+                  id="message"
+                  rows={4}
+                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-baitech-teal focus:ring-2 focus:ring-baitech-teal/20 outline-none transition-all resize-none"
+                  placeholder="How can we help?"
+                />
+              </div>
+              <button
+                type="submit"
+                className="w-full bg-baitech-navy text-white py-3 rounded-xl font-semibold transition-all duration-300 hover:bg-baitech-teal"
+              >
+                Send Message
+              </button>
+            </form>
+          </div>
         </div>
-      </section>
-      <Footer />
+      </div>
     </div>
   );
 };
